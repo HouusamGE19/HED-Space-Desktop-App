@@ -1,0 +1,15 @@
+{
+  "name": "hed-space-desktop",
+  "private": true,
+  "version": "0.6.43",
+  "description": "HED Space is a private local desktop media experience for movies, series, anime, childhood collections, music and immersive atmospheres.",
+  "scripts": {
+    "tauri": "tauri",
+    "dev": "tauri dev",
+    "build": "tauri build"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.11.4"
+  },
+  "author": "Houssam Elmouqaddam"
+}

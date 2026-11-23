@@ -1,0 +1,19 @@
+HED Space Desktop v0.6.43 — Windows development quick start
+
+1. Install the normal Tauri Windows prerequisites, Node.js/npm, and Rust stable (MSVC toolchain).
+
+2. For full playback, make mpv.exe available either in:
+   src-tauri\bin\
+   or on the Windows PATH.
+
+3. ffprobe.exe is recommended for media probing; ffmpeg.exe is optional for generated thumbnails/backdrops.
+   They can also live in src-tauri\bin\ or on PATH.
+
+4. From the project folder run:
+   npm install
+   npm run dev
+
+5. On first launch, choose your HED Space root or add library locations from the application.
+
+The app's SQLite/settings data live in Windows app data, not in this source folder.
+Personal media and third-party binaries are intentionally not included in the repository.

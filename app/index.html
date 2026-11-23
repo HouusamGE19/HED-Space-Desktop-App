@@ -1,0 +1,2471 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HED Space — Private Cinema</title>
+<link rel="icon" href="data:,">
+<style>
+:root{--accent:#ed2338;--accent-rgb:237,35,56;--ink:#f6f2ec;--muted:#8d898e;--line:rgba(255,255,255,.12);--header:76px}*{box-sizing:border-box}html{background:#050506;scroll-behavior:smooth}body{margin:0;background:#050506;color:var(--ink);font-family:"Segoe UI Variable Text","Segoe UI",Arial,sans-serif;overflow-x:hidden}button{font:inherit}.grain{position:fixed;z-index:90;inset:0;pointer-events:none;opacity:.038;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.7'/%3E%3C/svg%3E")}.header{position:fixed;z-index:120;left:0;right:0;top:0;height:var(--header);display:grid;grid-template-columns:280px 1fr 280px;align-items:center;padding:0 43px;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(180deg,rgba(4,4,5,.94),rgba(4,4,5,.62));backdrop-filter:blur(18px)}.brand{display:flex;align-items:center;gap:12px;color:#f4f0ea;font-size:13px;font-weight:800;letter-spacing:.14em}.brand-mark{width:35px;height:35px;border:2px solid rgba(var(--accent-rgb),.58);border-radius:50%;display:grid;place-items:center;color:var(--accent);transition:.45s}.brand-mark svg{width:22px}.nav{display:flex;justify-content:center;gap:26px}.nav button{position:relative;border:0;background:none;color:#928e92;padding:26px 0 23px;font-size:13px;letter-spacing:.03em;cursor:pointer}.nav button:hover,.nav button.active{color:#fff}.nav button.active:after{content:"";position:absolute;left:0;right:0;bottom:16px;height:2px;background:var(--accent);box-shadow:0 0 13px rgba(var(--accent-rgb),.55)}.utilities{display:flex;justify-content:flex-end;gap:9px}
+.utility,
+#search,
+#replayIntro,
+#motionToggle{
+    appearance:none;
+    -webkit-appearance:none;
+    position:relative;
+    width:39px;
+    height:39px;
+    min-width:39px;
+    min-height:39px;
+    padding:0;
+    border:1px solid rgba(255,255,255,.20)!important;
+    border-radius:50%;
+    background:rgba(11,11,13,.58)!important;
+    color:#dbd7d1;
+    opacity:1!important;
+    filter:none!important;
+    box-shadow:none!important;
+    cursor:pointer;
+    display:grid;
+    place-items:center;
+}
+.utility svg{width:17px;height:17px;display:block;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.utility .motion-core{fill:currentColor;stroke:none}
+.utility .motion-icon{fill:currentColor!important;stroke:none!important}
+.utility:hover,
+#search:hover,
+#replayIntro:hover,
+#motionToggle:hover{
+    border-color:var(--accent)!important;
+    color:#fff;
+}.app{min-height:100vh;transition:filter .7s,transform .7s}.app.home,.app.watch{--accent:#ed2338;--accent-rgb:237,35,56}.app.listen{--accent:#23cf72;--accent-rgb:35,207,114}.app.library{--accent:#bbb7b2;--accent-rgb:187,183,178}.app.atmospheres{--accent:#69adff;--accent-rgb:105,173,255}.standard-view{min-height:100vh;display:block;background:#050506}.hero{position:relative;height:515px;overflow:hidden}.hero-bg{position:absolute;inset:0;background-position:center 25%;background-size:cover;transition:background-image .2s,transform 1.2s cubic-bezier(.2,.8,.2,1)}.hero-bg:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#050506 0%,rgba(5,5,6,.84) 26%,rgba(5,5,6,.16) 64%,rgba(5,5,6,.35)),linear-gradient(0deg,#050506 0%,transparent 36%,rgba(0,0,0,.2))}.hero-content{position:relative;z-index:2;padding:145px 0 0 6.7vw;width:min(660px,47vw);transition:opacity .25s,transform .6s}.eyebrow{display:flex;align-items:center;gap:12px;color:var(--accent);font-size:11px;font-weight:800;letter-spacing:.25em;text-transform:uppercase}.eyebrow:before{content:"";width:38px;height:1px;background:var(--accent)}h1{font-family:"Segoe UI Variable Display","Segoe UI",sans-serif;font-size:clamp(60px,5.4vw,92px);font-weight:730;line-height:.88;letter-spacing:-.063em;margin:28px 0 13px}.meta{display:flex;gap:17px;color:#d5d0c9;font-size:12px}.meta span+span:before{content:"·";color:var(--accent);margin-right:17px}.description{max-width:590px;color:#cbc6c0;font-size:14px;line-height:1.65;margin:17px 0 20px}.actions{display:flex;gap:10px}.primary,.secondary{height:48px;padding:0 24px;border:0;font-weight:750;cursor:pointer}.primary{background:var(--accent);color:#07100b}.secondary{border:1px solid rgba(255,255,255,.28);background:rgba(8,8,9,.42);color:#eee9e2}.primary:hover{filter:brightness(1.1)}.secondary:hover{border-color:#fff}.feed{position:relative;z-index:3;padding:23px 0 76px;background:linear-gradient(180deg,#050506,#070708)}.content-row{margin:0 0 34px}.row-head{display:flex;align-items:end;justify-content:space-between;padding:0 5.3vw 12px}.row-title{display:flex;align-items:baseline;gap:13px}.row-title h2{margin:0;font-size:18px;letter-spacing:-.018em}.row-title span{color:#6f6b70;font-size:10px;letter-spacing:.12em;text-transform:uppercase}.row-controls{display:flex;gap:6px}.row-controls button{width:32px;height:28px;border:1px solid var(--line);background:#0b0b0d;color:#aaa5aa;cursor:pointer}.row-controls button:hover{border-color:var(--accent);color:#fff}.rail{display:flex;gap:13px;padding:0 5.3vw 5px;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}.rail::-webkit-scrollbar{display:none}.media-card{position:relative;flex:0 0 clamp(218px,14.7vw,282px);height:158px;border:1px solid rgba(255,255,255,.13);background:#111;overflow:hidden;scroll-snap-align:start;cursor:pointer;text-align:left;color:#fff;padding:0;transition:transform .24s,border-color .24s,box-shadow .24s}.media-card:hover,.media-card:focus-visible{transform:translateY(-5px);border-color:rgba(var(--accent-rgb),.75);box-shadow:0 12px 34px rgba(0,0,0,.45);outline:none}.media-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s}.media-card:hover img{transform:scale(var(--hover-zoom,1.085))}.media-card:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,3,5,.92) 0%,rgba(3,3,5,.3) 42%,transparent 72%)}.card-tag{position:absolute;z-index:2;left:9px;top:9px;padding:3px 7px;background:rgba(5,5,7,.58);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.12);border-radius:3px;color:#d9d4ce;font-size:8px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.88}.card-copy{position:absolute;z-index:2;left:12px;right:12px;bottom:10px}.card-copy strong{display:block;font-size:12.5px;font-weight:650;letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.card-copy small{display:block;color:#b2ada8;font-size:9.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.progress{position:absolute;z-index:3;left:0;bottom:0;height:2.5px;background:var(--accent)}.empty-feed{padding:100px 6vw;color:#8e898e}.atmos-view{position:fixed;z-index:20;inset:0;background:#02070d;visibility:hidden;opacity:0;pointer-events:none;transition:opacity .6s}.app.atmospheres .standard-view{display:none}.app.atmospheres .atmos-view{visibility:visible;opacity:1;pointer-events:auto}.atmos-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:#02070d}.atmos-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,5,9,.32),transparent 40%,rgba(2,5,9,.78)),linear-gradient(90deg,rgba(2,7,14,.38),transparent 55%)}.ambient-pulse{position:absolute;inset:-15%;pointer-events:none;background:radial-gradient(circle at 72% 36%,rgba(83,148,232,.15),transparent 28%);animation:ambientPulse 8s ease-in-out infinite alternate}.immersive-label{position:absolute;z-index:3;left:54px;bottom:39px}.immersive-label small{display:block;color:#86bcff;font-size:9px;letter-spacing:.22em;text-transform:uppercase}.immersive-label h2{margin:8px 0 0;font-size:27px;letter-spacing:-.035em}.immersive-controls{position:absolute;z-index:4;right:43px;bottom:35px;display:flex;gap:9px}.glass-action{height:48px;border:1px solid rgba(132,189,255,.38);background:rgba(4,13,23,.72);backdrop-filter:blur(14px);color:#eef6ff;padding:0 18px;cursor:pointer;font-size:11px;letter-spacing:.07em;text-transform:uppercase}.glass-action span{color:#84bcff;margin-right:7px}.glass-action:hover{border-color:#80baff;background:rgba(10,30,49,.84)}.sound-status{position:absolute;z-index:4;right:43px;bottom:91px;color:#b9cbe0;font-size:9px;letter-spacing:.11em;text-transform:uppercase}.panel{position:fixed;z-index:150;top:0;right:0;bottom:0;width:min(490px,94vw);background:#081019;border-left:1px solid #284963;box-shadow:-40px 0 110px #000;transform:translateX(105%);transition:transform .42s cubic-bezier(.2,.8,.2,1);padding:92px 38px 38px;overflow:auto}.panel.open{transform:none}.panel-close{position:absolute;right:25px;top:23px;width:42px;height:42px;border-radius:50%;border:1px solid #30404e;background:none;color:#fff;cursor:pointer}.panel-kicker{color:#73b4ff;font-size:10px;letter-spacing:.2em;text-transform:uppercase}.panel h2{font-size:40px;line-height:1.02;letter-spacing:-.045em;margin:15px 0 12px}.panel-intro{color:#8496a7;font-size:12px;line-height:1.65;margin-bottom:27px}.sound-options,.room-options{display:grid;gap:9px}.sound-option,.room-option{width:100%;display:grid;grid-template-columns:48px 1fr auto;align-items:center;gap:13px;text-align:left;border:1px solid #273a49;background:#0b151f;padding:9px;color:#fff;cursor:pointer}.sound-option:hover,.sound-option.selected,.room-option:hover,.room-option.selected{border-color:#69adff;background:#0d2030}.sound-option img,.room-option img{width:48px;height:48px;object-fit:cover}.sound-option strong,.room-option strong{display:block;font-size:12px}.sound-option small,.room-option small{color:#74899b;font-size:9px}.sound-option>span:last-child,.room-option>span:last-child{color:#72b4ff;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.sound-wave{width:48px;height:48px;background:#10283b;display:grid;place-items:center;color:#77b7ff}.panel-note{margin-top:23px;padding-top:17px;border-top:1px solid #263a49;color:#687c8d;font-size:10px;line-height:1.65}.transition-layer{position:fixed;z-index:180;inset:0;pointer-events:none;transform:translateX(-104%);overflow:hidden;background:radial-gradient(circle at 28% 50%,rgba(var(--sweep-rgb,237,35,56),.25),transparent 28%),linear-gradient(90deg,rgba(4,6,9,.98),rgba(var(--sweep-rgb,237,35,56),.45)),var(--sweep-image) center/cover no-repeat}.transition-layer:after{content:"";position:absolute;right:0;top:0;bottom:0;width:3px;background:rgb(var(--sweep-rgb));box-shadow:0 0 32px rgba(var(--sweep-rgb),.95)}.transition-layer.run{animation:sectionSweep 1.05s cubic-bezier(.68,0,.22,1) forwards}.transition-layer.atmos-run{animation-duration:1.3s}.transition-copy{position:absolute;left:8.2vw;top:50%;transform:translateY(-50%);opacity:0}.run .transition-copy{animation:sweepCopy .9s .13s ease forwards}.transition-copy small{color:rgb(var(--sweep-rgb));font-size:10px;letter-spacing:.24em;text-transform:uppercase}.transition-copy strong{display:block;font-size:clamp(58px,7vw,116px);line-height:.9;letter-spacing:-.06em;margin-top:13px}body.section-moving{overflow:hidden}body.intro-open{overflow:hidden}.section-moving .app{filter:brightness(.38) saturate(.55);transform:translateX(5vw) scale(.98)}.intro{position:fixed;z-index:210;inset:0;display:grid;place-items:center;overflow:hidden;background:#040405;color:#f7f3ed;transition:opacity .8s,visibility .8s}.intro.hidden{display:none}.intro.leaving{opacity:0;visibility:hidden;pointer-events:none}.intro:before{content:"";position:absolute;inset:-20%;background:radial-gradient(circle at 50% 44%,rgba(237,35,56,.13),transparent 23%)}.intro-core{position:relative;z-index:2;text-align:center}.intro-mark{width:105px;height:105px;color:#ed2338;filter:drop-shadow(0 0 24px rgba(237,35,56,.28));margin-bottom:24px}.intro-mark .ring{opacity:0}.intro-mark .arc{stroke-dasharray:70;stroke-dashoffset:70;transform:translateY(14px)}.intro.active .ring{animation:ringIn 1s .1s ease forwards}.intro.active .arc.one{animation:arcIn .8s .3s ease forwards}.intro.active .arc.two{animation:arcIn .8s .48s ease forwards}.intro.active .arc.three{animation:arcIn .8s .66s ease forwards}.intro-kicker,.intro-title span,.intro-title em,.intro-tagline,.intro-enter{opacity:0;transform:translateY(18px)}.intro-kicker{color:#ed2338;font-size:10px;font-weight:800;letter-spacing:.3em;text-transform:uppercase}.intro-title{font-size:clamp(42px,5vw,86px);line-height:.92;letter-spacing:-.055em;margin:18px 0 0}.intro-title span,.intro-title em{display:block;font-style:normal}.intro.active .intro-kicker{animation:reveal .7s 1.05s forwards}.intro.active .intro-title span{animation:reveal .8s 1.35s forwards}.intro.active .intro-title em{animation:reveal .8s 1.58s forwards}.intro-tagline{color:#8f8a90;font-size:12px;letter-spacing:.08em;margin-top:24px}.intro.active .intro-tagline{animation:reveal .7s 2s forwards}.intro-enter{margin-top:28px;height:44px;padding:0 18px;border:1px solid #4a464b;background:rgba(8,8,9,.6);color:#eee9e2;font-size:10px;letter-spacing:.13em;text-transform:uppercase;cursor:pointer}.intro.active .intro-enter{animation:reveal .7s 2.25s forwards}.intro-skip{position:absolute;z-index:3;right:34px;top:28px;border:0;background:none;color:#7c777d;font-size:9px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer}.player{position:fixed;z-index:160;inset:0;display:none;background:#020203}.player.open{display:block}.player-bg{position:absolute;inset:0;background-position:center;background-size:cover;filter:brightness(.42)}.player-ui{position:absolute;inset:0;display:grid;place-items:center}.player-play{width:76px;height:76px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.13);color:#fff;font-size:25px}.player-title{position:absolute;left:45px;bottom:48px;font-size:22px}.details{position:fixed;z-index:145;inset:0;display:none;place-items:center;padding:40px;background:rgba(1,2,4,.72);backdrop-filter:blur(12px)}.details.open{display:grid;animation:detailsIn .5s ease both}.details-backdrop{position:absolute;inset:0;overflow:hidden;background:#070a10}.details-backdrop:before{content:"";position:absolute;inset:-8%;background-image:var(--detail-backdrop);background-size:cover;background-position:center;filter:blur(18px) brightness(.3) saturate(.8);transform:scale(1.08)}.details-backdrop:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(2,4,8,.9),rgba(2,4,8,.55) 45%,rgba(2,4,8,.82)),linear-gradient(0deg,rgba(2,4,8,.78),transparent 45%,rgba(2,4,8,.6))}.details-card{position:relative;z-index:1;width:min(1000px,90vw);min-height:min(590px,78vh);display:grid;grid-template-columns:minmax(220px,32%) 1fr;gap:42px;align-items:center;padding:42px;border:1px solid rgba(255,255,255,.16);background:rgba(8,10,14,.58);box-shadow:0 28px 100px rgba(0,0,0,.65);overflow:hidden}.details-poster{width:100%;max-height:500px;object-fit:cover;box-shadow:0 18px 50px rgba(0,0,0,.55)}.details-copy{max-width:520px}.details-kicker{color:var(--accent);font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase}.details-copy h2{font-size:clamp(34px,4vw,66px);line-height:.92;letter-spacing:-.055em;margin:14px 0}.details-meta{color:#d1cbc3;font-size:12px;letter-spacing:.04em}.details-description{color:#b7b5b7;font-size:14px;line-height:1.7;max-width:560px;margin:22px 0 28px}.details-actions{display:flex;gap:10px}.details-play{height:48px;padding:0 24px;border:0;background:var(--accent);color:#07100b;font-weight:800;cursor:pointer}.details-close{position:absolute;z-index:3;right:28px;top:25px;width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.25);background:rgba(0,0,0,.25);color:#fff;font-size:22px;cursor:pointer}.toast{position:fixed;z-index:220;left:50%;top:94px;transform:translate(-50%,-20px);opacity:0;background:#f4f0ea;color:#08080a;padding:11px 16px;font-size:10px;pointer-events:none;transition:.25s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@keyframes detailsIn{from{opacity:0}to{opacity:1}}@keyframes sectionSweep{0%{transform:translateX(-104%)}48%,67%{transform:translateX(0)}100%{transform:translateX(104%)}}@keyframes sweepCopy{0%{opacity:0;transform:translateY(-42%)}35%,72%{opacity:1;transform:translateY(-50%)}100%{opacity:0;transform:translateY(-57%)}}@keyframes ambientPulse{to{transform:translate(-2%,2%) scale(1.05);opacity:.55}}@keyframes ringIn{to{opacity:.38}}@keyframes arcIn{to{stroke-dashoffset:0;transform:none}}@keyframes reveal{to{opacity:1;transform:none}}body.reduce .transition-layer,body.motion-off .transition-layer{display:none}body.reduce .ambient-pulse,body.motion-off .ambient-pulse{animation:none}body.reduce .intro *,body.motion-off .intro *{animation:none!important;transition:none!important}body.reduce .intro .ring,body.motion-off .intro .ring{opacity:.38}body.reduce .intro .arc,body.motion-off .intro .arc{stroke-dashoffset:0;transform:none}body.reduce .intro-kicker,body.reduce .intro-title span,body.reduce .intro-title em,body.reduce .intro-tagline,body.reduce .intro-enter,body.motion-off .intro-kicker,body.motion-off .intro-title span,body.motion-off .intro-title em,body.motion-off .intro-tagline,body.motion-off .intro-enter{opacity:1;transform:none}@media(prefers-reduced-motion:reduce){.transition-layer{display:none}.ambient-pulse{animation:none}.intro *{animation:none!important;transition:none!important}.intro .ring{opacity:.38}.intro .arc{stroke-dashoffset:0;transform:none}.intro-kicker,.intro-title span,.intro-title em,.intro-tagline,.intro-enter{opacity:1;transform:none}}@media(max-width:1100px){.header{grid-template-columns:200px 1fr 180px;padding:0 24px}.nav{gap:15px}.hero-content{width:60vw;padding-left:5vw}.media-card{flex-basis:250px}.immersive-label{left:28px}.immersive-controls{right:24px}}@media(max-width:760px){:root{--header:68px}.header{grid-template-columns:1fr auto;padding:0 16px}.brand{font-size:11px}.nav{position:fixed;left:0;right:0;bottom:0;height:60px;background:#070708;align-items:center;justify-content:space-around;z-index:130}.nav button{font-size:10px;padding:20px 0}.nav button.active:after{bottom:9px}.utilities .utility:first-child{display:none}.hero{height:560px}.hero-content{padding:130px 22px 0;width:92vw}.description{font-size:13px}h1{font-size:58px}.feed{padding-bottom:100px}.row-head,.rail{padding-left:22px;padding-right:22px}.media-card{flex-basis:238px}.immersive-controls{left:18px;right:18px;bottom:82px;display:grid;grid-template-columns:1fr 1fr}.immersive-label{left:20px;bottom:154px}.sound-status{left:20px;right:auto;bottom:137px}.panel{padding-left:24px;padding-right:24px}}
+</style>
+<style>
+.header{transition:transform .45s cubic-bezier(.2,.8,.2,1),opacity .35s}.glass-action b{font:inherit}.content-row{margin-bottom:50px}.row-head{padding-bottom:18px}.row-title{gap:17px}.row-title h2{font-size:24px;letter-spacing:-.025em}.row-title span{font-size:10px;letter-spacing:.14em}.media-card{flex-basis:clamp(220px,14.35vw,275px);aspect-ratio:16/9;height:auto;scroll-snap-align:center}.media-card img{object-position:var(--position,50% 50%);transform:scale(var(--zoom,1.04))}.media-card:hover img,.media-card:focus-visible img{transform:scale(var(--hover-zoom,1.085))}.rail.centered{justify-content:flex-start}:fullscreen .header{transform:translateY(-110%);opacity:0;pointer-events:none}:fullscreen .atmos-view{inset:0}:fullscreen .immersive-label{bottom:42px}:fullscreen .immersive-controls{bottom:38px}.fullscreen-fallback .header{transform:translateY(-110%);opacity:0;pointer-events:none}.fullscreen-fallback .atmos-view{z-index:140}
+@media(max-width:760px){.row-title{display:block}.row-title h2{font-size:21px}.row-title span{display:block;margin-top:6px}.content-row{margin-bottom:42px}.immersive-controls{grid-template-columns:1fr 1fr}.immersive-controls #fullscreenAtmos{grid-column:1/-1}}
+</style>
+<style>
+/* HED Space details stage: the moving scene belongs to the modal frame, not the page. */
+.details{display:none;place-items:center;padding:34px;background:rgba(1,2,4,.7);backdrop-filter:blur(5px)}
+.details.open{display:grid}
+.details-backdrop{position:absolute;inset:0;overflow:hidden;background:rgba(2,3,6,.52);pointer-events:none}
+.details-backdrop:before,.details-backdrop:after{display:none}
+.details-backdrop video{position:absolute;inset:-4%;width:108%;height:108%;object-fit:cover;filter:blur(5px) brightness(.36) saturate(.8);transform:scale(1.06);opacity:.82}
+.details-backdrop:after{content:"";position:absolute;inset:0;background:rgba(2,4,8,.3)}
+.details-card{isolation:isolate;position:relative;width:min(1000px,91vw);height:min(590px,78vh);min-height:0;display:grid;grid-template-columns:minmax(270px,41%) 1fr;gap:0;align-items:stretch;padding:0;border:1px solid rgba(255,255,255,.22);background:#0a0b10;box-shadow:0 30px 120px rgba(0,0,0,.78);overflow:hidden;border-radius:20px;transform:translateY(12px) scale(.985);transition:transform .55s cubic-bezier(.2,.8,.2,1)}
+.details.open .details-card{transform:none}
+.details-card:after{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(circle at 17% 42%,rgba(var(--accent-rgb),.12),transparent 28%);pointer-events:none}
+.details-poster{position:relative;z-index:2;width:100%;height:100%;max-height:none;object-fit:cover;object-position:center;box-shadow:22px 0 70px rgba(0,0,0,.28);filter:saturate(.96);transform:scale(1.01)}
+.details-copy{position:relative;z-index:2;align-self:center;max-width:520px;padding:52px 58px 52px 48px}
+.details-kicker{font-size:9px;letter-spacing:.28em}
+.details-copy h2{font-size:clamp(38px,4.6vw,72px);max-width:520px;margin:16px 0 18px}
+.details-meta{display:flex;flex-wrap:wrap;gap:8px;color:#e7e2db;font-size:11px}
+.details-meta:empty{display:none}
+.details-meta{padding:0}
+.details-description{max-width:470px;margin:22px 0 30px;color:#d0ccd0;font-size:14px;line-height:1.65}
+.details-actions{align-items:center}
+.details-play{height:48px;padding:0 24px;border-radius:2px;box-shadow:0 8px 25px rgba(var(--accent-rgb),.22);transition:transform .2s,filter .2s}
+.details-play:hover{filter:brightness(1.1);transform:translateY(-2px)}
+.details-close{right:20px;top:18px;width:38px;height:38px;background:rgba(3,4,7,.54);backdrop-filter:blur(8px);font-size:20px}
+.library-view{display:none}.app.library .standard-view{display:none}.app.library .library-view{display:block;min-height:100vh;padding:122px 3.8vw 90px;background:radial-gradient(circle at 78% 0%,rgba(160,150,135,.08),transparent 30%),linear-gradient(#09090b,#050506)}.library-shell{max-width:1760px;margin:0 auto}.library-intro{display:flex;align-items:end;justify-content:space-between;gap:30px;margin-bottom:34px}.library-kicker{color:#c9c1b4;font-size:10px;font-weight:800;letter-spacing:.25em;text-transform:uppercase}.library-intro h1{font-size:clamp(42px,5vw,76px);line-height:.88;margin:13px 0 0;letter-spacing:-.065em}.library-intro p{max-width:340px;color:#8c8990;font-size:12px;line-height:1.6;margin:0}.library-tools{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:32px}.library-filter{border:1px solid rgba(255,255,255,.14);background:#101014;color:#aaa6ab;padding:10px 15px;border-radius:999px;font-size:10px;cursor:pointer}.library-filter.active,.library-filter:hover{border-color:#bbb4a8;background:#211f1d;color:#fff}.library-group{display:block;position:relative;clear:both;width:100%;margin:0;padding:26px 0 56px;border-top:1px solid rgba(255,255,255,.08);isolation:isolate}.library-group:first-child{border-top:0;padding-top:0}.library-group-head{position:relative;z-index:3;display:flex;align-items:baseline;justify-content:space-between;min-height:42px;margin:0 0 22px;padding:0 0 2px;background:transparent}.library-group-head h2{margin:0;font-size:22px;line-height:1.15;letter-spacing:-.035em}.library-group-head span{color:#6f6b70;font-size:10px;letter-spacing:.13em;text-transform:uppercase}.poster-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(auto-fill,minmax(188px,1fr));align-items:start;gap:24px 20px}.poster-tile{position:relative;display:block;min-width:0;min-height:calc((100% - 0px) * 1.5 + 58px);border:0;background:none;color:#fff;padding:0;text-align:left;cursor:pointer;transition:transform .28s,filter .28s}.poster-tile:hover,.poster-tile:focus-visible{transform:translateY(-7px);filter:brightness(1.12);outline:none}.poster-art{position:relative;display:block;aspect-ratio:2/3;overflow:hidden;border-radius:10px;background:#111217;box-shadow:0 12px 26px rgba(0,0,0,.35);border:1px solid rgba(255,255,255,.1)}.poster-art img{width:100%;height:100%;object-fit:cover;display:block}.poster-art:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(3,3,5,.78),transparent 35%);opacity:.82}.poster-badge{position:absolute;z-index:2;left:9px;top:9px;padding:5px 8px;border:1px solid rgba(255,255,255,.18);border-radius:999px;background:rgba(3,3,5,.58);backdrop-filter:blur(8px);font-size:8px;letter-spacing:.1em;text-transform:uppercase}.poster-tile-copy{display:block;height:52px;overflow:hidden;padding:9px 3px 0;background:#09090b}.poster-tile-copy strong{display:block;max-width:100%;font-size:12px;line-height:1.25;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.poster-tile-copy small{display:block;max-width:100%;color:#85828a;font-size:10px;line-height:1.2;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.poster-tile .poster-play{position:absolute;z-index:3;right:10px;bottom:61px;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--accent);color:#08090a;opacity:0;transform:scale(.8);transition:.25s;line-height:0;font-size:0}.poster-tile:hover .poster-play,.poster-tile:focus-visible .poster-play{opacity:1;transform:none}@media(max-width:760px){.app.library .library-view{padding:98px 22px 90px}.library-intro{display:block}.library-intro p{margin-top:18px}.poster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}.library-group{padding:22px 0 42px}.library-group-head{min-height:38px;margin-bottom:18px}.poster-tile{min-height:0}.poster-tile-copy{height:50px}}
+.series-panel{position:fixed;z-index:148;top:0;right:0;bottom:0;width:min(580px,94vw);padding:92px 34px 34px;background:rgba(7,10,16,.97);border-left:1px solid rgba(255,255,255,.16);box-shadow:-35px 0 100px rgba(0,0,0,.7);transform:translateX(105%);transition:transform .48s cubic-bezier(.2,.8,.2,1);overflow:auto}.series-panel.open{transform:none}.series-panel:before{content:"";position:absolute;inset:0 0 auto;height:220px;background:var(--series-backdrop) center/cover;opacity:.28;mask-image:linear-gradient(#000,transparent)}.series-close{position:absolute;z-index:2;right:22px;top:20px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.2);background:rgba(0,0,0,.3);color:#fff;cursor:pointer;font-size:20px}.series-head{position:relative;z-index:1;display:grid;grid-template-columns:116px 1fr;gap:20px;align-items:end;margin-bottom:30px}.series-poster{width:116px;height:164px;object-fit:cover;border-radius:8px;box-shadow:0 16px 38px #000}.series-kicker{color:var(--accent);font-size:9px;letter-spacing:.25em;text-transform:uppercase}.series-head h2{font-size:36px;line-height:.95;letter-spacing:-.05em;margin:9px 0}.series-meta{color:#aaaeba;font-size:11px}.series-intro{position:relative;color:#b9bdc8;font-size:13px;line-height:1.6;margin:0 0 25px}.season-list{position:relative;display:flex;gap:8px;overflow:auto;padding-bottom:8px;margin-bottom:20px}.season-list button{flex:0 0 auto;border:1px solid rgba(255,255,255,.15);background:#121722;color:#aeb5c3;padding:10px 14px;border-radius:999px;font-size:10px;cursor:pointer}.season-list button.active,.season-list button:hover{color:#fff;border-color:var(--accent);background:rgba(var(--accent-rgb),.16)}.episode-list{position:relative;display:grid;gap:8px}.episode-list button{display:grid;grid-template-columns:90px 1fr auto;gap:13px;align-items:center;text-align:left;border:1px solid rgba(255,255,255,.1);background:#0d1119;color:#fff;padding:8px;cursor:pointer;border-radius:6px}.episode-list button:hover{border-color:var(--accent);background:#141b27;transform:translateX(-3px)}.episode-list img{width:90px;height:52px;object-fit:cover;border-radius:4px}.episode-list strong{display:block;font-size:12px}.episode-list small{display:block;color:#858d9c;font-size:10px;margin-top:3px}.episode-list em{font-style:normal;color:var(--accent);font-size:10px}
+@media(max-width:760px){.details{padding:18px}.details-card{width:94vw;height:min(680px,88vh);display:block;border-radius:18px}.details-backdrop video{filter:blur(4px) brightness(.32)}.details-poster{position:absolute;inset:0;height:52%;object-position:center top;opacity:.68;mask-image:linear-gradient(#000 55%,transparent 100%)}.details-copy{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:28px 24px 28px}.details-copy h2{font-size:42px}.details-description{font-size:13px;margin:14px 0 20px}.details-close{right:14px;top:14px}}
+/* Final Library flow guard: each group owns its heading, grid, captions, and height. */
+.app.library .library-view .library-group{display:block;position:relative;float:none;clear:both;width:100%;height:auto;min-height:0;overflow:visible;margin:0;padding:42px 0 64px;border-top:1px solid rgba(255,255,255,.1)}
+.app.library .library-view .library-group:first-child{padding-top:0;border-top:0}
+.app.library .library-view .library-group-head{position:relative;display:flex;float:none;clear:both;width:100%;height:auto;min-height:42px;margin:0 0 28px;padding:0 0 5px;background:transparent;z-index:4}
+.app.library .library-view .library-group-head h2{display:block;position:relative;margin:0;line-height:1.2}
+.app.library .library-view .poster-grid{display:grid;position:relative;float:none;clear:both;width:100%;height:auto;min-height:0;grid-auto-rows:max-content;align-items:start;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:28px 22px}
+.app.library .library-view .poster-tile{display:flex;position:relative;float:none;align-self:start;flex-direction:column;width:100%;height:auto;min-height:0;margin:0;padding:0}
+.app.library .library-view .poster-art{display:block;flex:0 0 auto;width:100%;height:auto;aspect-ratio:2/3}
+.app.library .library-view .poster-tile-copy{display:block;flex:0 0 58px;width:100%;height:58px;min-height:58px;overflow:hidden;margin:0;padding:10px 3px 0;background:#09090b}
+.app.library .library-view .poster-tile-copy strong,.app.library .library-view .poster-tile-copy small{display:block;width:100%;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.app.library .library-view .poster-tile-copy strong{line-height:1.25}
+.app.library .library-view .poster-tile-copy small{line-height:1.2}
+.app.library .library-view .poster-play{bottom:68px}
+@media(max-width:760px){.app.library .library-view .library-group{padding:28px 0 48px}.app.library .library-view .library-group-head{margin-bottom:22px}.app.library .library-view .poster-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 14px}.app.library .library-view .poster-tile-copy{height:54px;min-height:54px;flex-basis:54px}}
+
+/* v0.5.1 — Netflix-style moving details scene and no page scrollbar */
+.details{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  scrollbar-width:none;
+}
+.details::-webkit-scrollbar{width:0;height:0;display:none}
+.details-backdrop{background-size:cover!important;background-position:center!important}
+.details-backdrop:before{display:none!important}
+.details-backdrop:after{
+  display:block!important;
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:
+    radial-gradient(circle at 62% 42%,transparent 0 22%,rgba(2,4,8,.14) 55%,rgba(2,4,8,.34) 100%),
+    linear-gradient(90deg,rgba(2,4,8,.28),rgba(2,4,8,.12) 44%,rgba(2,4,8,.30)),
+    linear-gradient(0deg,rgba(2,4,8,.38),transparent 42%,rgba(2,4,8,.20));
+  pointer-events:none;
+}
+.details-backdrop .details-preview-video{
+  position:absolute;
+  z-index:1;
+  inset:-6%;
+  width:112%;
+  height:112%;
+  object-fit:cover;
+  object-position:center;
+  filter:blur(12px) brightness(.43) saturate(.88);
+  transform:scale(1.08);
+  opacity:.94;
+  pointer-events:none;
+}
+.details.open .details-card{max-height:calc(100vh - 68px)}
+@media(max-width:760px){
+  .details-backdrop .details-preview-video{filter:blur(10px) brightness(.36) saturate(.86)}
+}
+
+</style>
+
+<style>
+/* Home mosaic — editorial dashboard inspired by the supplied reference. */
+.home-dashboard{display:none;min-height:100vh;padding:30px 1.35vw 70px;background:#050506}
+.app.home .hero{display:block;height:auto;min-height:515px}
+.app.home .feed{display:none}
+.app.home .home-dashboard{display:block}
+.app.home .hero:after{content:"";position:absolute;z-index:1;left:0;right:0;bottom:0;height:110px;pointer-events:none;background:linear-gradient(180deg,transparent,#050506)}
+.app.home .hero-content{padding-bottom:44px}
+.app.home .hero-content h1{line-height:.94;margin-bottom:22px}
+.app.home .hero-content .meta{position:relative;z-index:3;align-items:center;min-height:20px;margin-top:0;margin-bottom:0}
+.app.home .hero-content .description{margin-top:20px}
+.home-mosaic{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));grid-auto-rows:clamp(132px,12.6vw,220px);grid-auto-flow:dense;gap:10px;max-width:1880px;margin:0 auto}
+.home-card{position:relative;display:block;width:100%;height:100%;min-width:0;overflow:hidden;border:1px solid rgba(255,255,255,.075);background:#0b0b0c;color:#fff;padding:0;text-align:left;cursor:pointer;isolation:isolate;transition:transform .28s cubic-bezier(.2,.8,.2,1),border-color .28s,filter .28s}
+.home-card:hover,.home-card:focus-visible{transform:translateY(-3px);border-color:rgba(255,255,255,.28);filter:brightness(1.08);outline:none;z-index:5}
+.home-card img{position:absolute;inset:0;width:100%;height:100%;display:block;object-fit:cover;object-position:var(--home-pos,50% 50%);transform:scale(var(--home-zoom,1.01));transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+.home-card:hover img,.home-card:focus-visible img{transform:scale(calc(var(--home-zoom,1.01) + .045))}
+.home-card:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02) 28%,rgba(0,0,0,.2) 56%,rgba(0,0,0,.9) 100%)}
+.home-card-copy{position:absolute;z-index:2;left:18px;right:18px;bottom:15px;text-shadow:0 2px 18px rgba(0,0,0,.75)}
+.home-card-kicker{display:block;margin-bottom:6px;color:#d1cbc5;font-size:8px;font-weight:750;letter-spacing:.2em;text-transform:uppercase}
+.home-card-title{display:block;font-family:"Segoe UI Variable Display","Segoe UI",sans-serif;font-size:clamp(16px,1.18vw,22px);font-weight:700;line-height:1;letter-spacing:-.032em}
+.home-card-feature .home-card-copy{left:20px;bottom:18px}
+.home-card-feature .home-card-title,.home-card-gumball .home-card-title,.home-card-late .home-card-title{font-size:clamp(20px,1.55vw,30px);font-weight:720;letter-spacing:-.035em}
+.home-card-feature{grid-column:1 / 6;grid-row:1 / span 2;--home-pos:47% 36%}
+.home-card-aot{grid-column:6 / 9;grid-row:1 / span 2;--home-pos:50% 48%}
+.home-card-music{grid-column:9 / 13;grid-row:1;--home-pos:50% 48%}
+.home-card-gumball{grid-column:9 / 13;grid-row:2;--home-pos:50% 42%}
+.home-card-storm{grid-column:1 / 4;grid-row:3;--home-pos:50% 48%}
+.home-card-hunter{grid-column:4 / 8;grid-row:3 / span 2;--home-pos:50% 42%}
+.home-card-jazz{grid-column:8 / 13;grid-row:3;--home-pos:50% 50%}
+.home-card-shaun{grid-column:1 / 4;grid-row:4;--home-pos:50% 48%}
+.home-card-interstellar{grid-column:8 / 13;grid-row:4;--home-pos:50% 38%}
+.home-card-late{grid-column:1 / 6;grid-row:5;--home-pos:50% 50%}
+.home-card-orbit{grid-column:6 / 9;grid-row:5;--home-pos:50% 44%}
+.home-card-ember{grid-column:9 / 13;grid-row:5;--home-pos:50% 46%}
+.home-card-noir{grid-column:1 / 4;grid-row:6;--home-pos:50% 45%}
+.home-card-vault{grid-column:4 / 8;grid-row:6;--home-pos:50% 44%}
+.home-card-echo{grid-column:8 / 10;grid-row:6;--home-pos:50% 46%}
+.home-card-after{grid-column:10 / 13;grid-row:6;--home-pos:50% 45%}
+@media(max-width:1100px){
+  .home-dashboard{padding-left:18px;padding-right:18px}
+  .home-mosaic{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:195px}
+  .home-card-feature{grid-column:1 / 7;grid-row:1 / span 2}
+  .home-card-aot{grid-column:1 / 4;grid-row:3}
+  .home-card-music{grid-column:4 / 7;grid-row:3}
+  .home-card-gumball{grid-column:1 / 7;grid-row:4}
+  .home-card-storm{grid-column:1 / 3;grid-row:5}
+  .home-card-hunter{grid-column:3 / 7;grid-row:5 / span 2}
+  .home-card-jazz{grid-column:1 / 3;grid-row:6}
+  .home-card-shaun{grid-column:1 / 4;grid-row:7}
+  .home-card-interstellar{grid-column:4 / 7;grid-row:7}
+  .home-card-late{grid-column:1 / 7;grid-row:8}
+  .home-card-orbit{grid-column:1 / 4;grid-row:9}
+  .home-card-ember{grid-column:4 / 7;grid-row:9}
+  .home-card-noir{grid-column:1 / 3;grid-row:10}
+  .home-card-vault{grid-column:3 / 5;grid-row:10}
+  .home-card-echo{grid-column:5 / 7;grid-row:10}
+  .home-card-after{grid-column:1 / 7;grid-row:11}
+}
+@media(max-width:760px){
+  .app.home .hero-content{padding-bottom:52px}
+  .home-dashboard{padding:18px 12px 84px}
+  .home-mosaic{display:grid;grid-template-columns:1fr;grid-auto-rows:210px;gap:9px}
+  .home-card,.home-card-feature,.home-card-aot,.home-card-music,.home-card-gumball,.home-card-storm,.home-card-hunter,.home-card-jazz,.home-card-shaun,.home-card-interstellar,.home-card-late,.home-card-orbit,.home-card-ember,.home-card-noir,.home-card-vault,.home-card-echo,.home-card-after{grid-column:1;grid-row:auto}
+  .home-card-feature{height:360px}
+  .home-card-copy{left:15px;right:15px;bottom:14px}
+}
+</style>
+
+
+<style>
+/* Force the three utility circles to be literally identical SVG rings. */
+.utilities{
+  display:flex;
+  justify-content:flex-end;
+  gap:9px;
+}
+.utility,
+#search,
+#replayIntro,
+#motionToggle{
+  appearance:none;
+  -webkit-appearance:none;
+  position:relative;
+  width:39px;
+  height:39px;
+  min-width:39px;
+  min-height:39px;
+  padding:0;
+  border:0 !important;
+  border-radius:50%;
+  background:transparent !important;
+  box-shadow:none !important;
+  filter:none !important;
+  opacity:1 !important;
+  color:#dbd7d1;
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  overflow:visible;
+}
+.utility .utility-ring{
+  position:absolute;
+  inset:0;
+  width:39px;
+  height:39px;
+  display:block;
+  pointer-events:none;
+}
+.utility .utility-ring circle{
+  fill:rgba(11,11,13,.58);
+  stroke:rgba(255,255,255,.20);
+  stroke-width:1;
+  vector-effect:non-scaling-stroke;
+}
+.utility .utility-symbol{
+  position:relative;
+  z-index:1;
+}
+.utility .search-symbol{
+  width:17px;
+  height:17px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+.utility .sparkle-symbol{
+  width:17px;
+  height:17px;
+  display:grid;
+  place-items:center;
+  font-size:18px;
+  line-height:17px;
+}
+.utility .motion-icon{
+  width:17px;
+  height:17px;
+  fill:currentColor !important;
+  stroke:none !important;
+}
+.utility:hover{
+  color:#fff;
+}
+.utility:hover .utility-ring circle{
+  stroke:var(--accent);
+}
+</style>
+
+
+<style>
+/* =========================================================
+   LISTEN — music-first layout
+   ========================================================= */
+.listen-view{
+  display:none;
+  min-height:100vh;
+  padding:112px 4.4vw 128px;
+  background:
+    radial-gradient(circle at 12% -4%,rgba(35,207,114,.18),transparent 25%),
+    radial-gradient(circle at 86% 8%,rgba(35,207,114,.08),transparent 22%),
+    linear-gradient(180deg,#111713 0,#090b0a 330px,#070808 100%);
+}
+.app.listen .standard-view{display:none}
+.app.listen .library-view{display:none}
+.app.listen .listen-view{display:block}
+.listen-shell{max-width:1540px;margin:0 auto}
+.listen-topline{display:flex;align-items:end;justify-content:flex-start;gap:24px;margin-bottom:28px}
+.listen-kicker{font-size:10px;font-weight:800;letter-spacing:.24em;text-transform:uppercase;color:#66df95}
+.listen-topline h1{
+  margin:8px 0 0;
+  font-size:clamp(42px,5vw,72px);
+  line-height:.92;
+  letter-spacing:-.055em;
+}
+
+/* quick launch tiles */
+.listen-quick{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+  margin-bottom:42px
+}
+.listen-quick-card{
+  position:relative;
+  display:grid;
+  grid-template-columns:72px 1fr 46px;
+  align-items:center;
+  min-height:72px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:7px;
+  background:rgba(255,255,255,.065);
+  color:#fff;
+  cursor:pointer;
+  text-align:left;
+  padding:0;
+  transition:.2s ease
+}
+.listen-quick-card:hover{
+  background:rgba(255,255,255,.12);
+  transform:translateY(-1px)
+}
+.listen-quick-card img{width:72px;height:72px;object-fit:cover}
+.listen-quick-copy{padding:0 14px;min-width:0}
+.listen-quick-copy strong{display:block;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-quick-copy small{display:block;color:#8d948f;font-size:10px;margin-top:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-quick-play{
+  width:34px;height:34px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  justify-self:center;
+  background:#1ed760;color:#07100a;
+  box-shadow:0 8px 22px rgba(30,215,96,.20);
+  opacity:0;transform:translateY(4px) scale(.84);transition:.22s ease;
+  line-height:0;
+}
+.listen-quick-play svg,.listen-album-play svg,.library-music-play svg,.poster-play svg{
+  width:17px;height:17px;display:block;fill:currentColor;flex:0 0 auto;
+  transform:translateX(.9px);
+}
+.listen-quick-play svg{transform:translateX(.9px)}
+.listen-quick-card:hover .listen-quick-play{
+  opacity:1;transform:translateY(0) scale(1);
+}
+
+/* square music cards */
+.listen-section{margin-top:38px}
+.listen-section-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:16px}
+.listen-section-head h2{margin:0;font-size:22px;letter-spacing:-.025em}
+.listen-section-head span{color:#737a75;font-size:10px;letter-spacing:.12em;text-transform:uppercase}
+.listen-album-grid{
+  display:grid;
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:15px
+}
+.listen-album{
+  position:relative;
+  display:block;
+  min-width:0;
+  border:0;
+  border-radius:9px;
+  padding:12px;
+  background:#121513;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+  transition:.22s ease
+}
+.listen-album:hover{background:#1b201c;transform:translateY(-4px)}
+.listen-album-art{position:relative;display:block;aspect-ratio:1;overflow:hidden;border-radius:7px;background:#181a19;box-shadow:0 12px 30px rgba(0,0,0,.28)}
+.listen-album-art img{width:100%;height:100%;object-fit:cover;display:block}
+.listen-album-play{
+  position:absolute;right:10px;bottom:10px;
+  width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:#1ed760;color:#061108;
+  box-shadow:0 8px 24px rgba(0,0,0,.42),0 0 0 1px rgba(255,255,255,.03) inset;
+  opacity:0;transform:translateY(8px) scale(.9);transition:.22s ease;
+  line-height:0;
+}
+.listen-album-play svg{transform:translateX(.9px)}
+.listen-album:hover .listen-album-play{
+  opacity:1;transform:translateY(0) scale(1);
+}
+.listen-album strong{display:block;font-size:12px;margin-top:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-album small{display:block;color:#858b87;font-size:10px;line-height:1.35;margin-top:5px;min-height:27px}
+
+/* track list */
+.listen-tracks-wrap{
+  margin-top:44px;
+  display:grid;
+  grid-template-columns:minmax(0,1.3fr) minmax(300px,.7fr);
+  gap:24px
+}
+.listen-track-panel,.listen-side-panel{
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:11px;
+  background:rgba(13,16,14,.78);
+  overflow:hidden
+}
+.listen-panel-head{
+  display:flex;align-items:end;justify-content:space-between;
+  padding:20px 20px 13px
+}
+.listen-panel-head h2{margin:0;font-size:20px}
+.listen-panel-head span{font-size:9px;color:#737a75;text-transform:uppercase;letter-spacing:.13em}
+.listen-track{
+  width:100%;
+  display:grid;
+  grid-template-columns:28px 44px minmax(0,1fr) minmax(110px,.42fr) 48px;
+  gap:11px;
+  align-items:center;
+  padding:8px 18px;
+  border:0;
+  background:transparent;
+  color:#dcdedc;
+  text-align:left;
+  cursor:pointer
+}
+.listen-track:hover{background:rgba(255,255,255,.055)}
+.listen-track-index{color:#777f79;font-size:11px;text-align:center}
+.listen-track img{width:42px;height:42px;border-radius:4px;object-fit:cover}
+.listen-track-main{min-width:0}
+.listen-track-main strong{display:block;font-size:11.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-track-main small{display:block;color:#7e8580;font-size:9.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-track-album{color:#8b928d;font-size:9.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-track-time{color:#8b928d;font-size:9.5px;text-align:right}
+.listen-track.is-current .listen-track-index{color:#1ed760}
+.listen-track.is-current .listen-track-main strong{color:#1ed760}
+
+.listen-side-panel{padding:18px}
+.listen-side-panel h3{margin:0 0 14px;font-size:17px}
+.listen-side-feature{
+  position:relative;overflow:hidden;border-radius:9px;aspect-ratio:1.45;
+  background:#111;margin-bottom:17px
+}
+.listen-side-feature img{width:100%;height:100%;object-fit:cover}
+.listen-side-feature:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.78),transparent 58%)}
+.listen-side-feature-copy{position:absolute;z-index:1;left:14px;right:14px;bottom:12px}
+.listen-side-feature-copy small{display:block;color:#a9b0ab;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+.listen-side-feature-copy strong{display:block;margin-top:4px;font-size:16px}
+.listen-chip-row{display:flex;gap:7px;flex-wrap:wrap}
+.listen-chip{
+  border:1px solid rgba(255,255,255,.10);border-radius:999px;
+  background:#121513;color:#aeb4b0;padding:8px 11px;font-size:9px
+}
+
+/* now playing dock */
+.listen-player{
+  position:fixed;
+  z-index:118;
+  left:0;right:0;bottom:0;
+  height:78px;
+  display:none;
+  grid-template-columns:minmax(220px,1fr) minmax(320px,1.15fr) minmax(180px,1fr);
+  align-items:center;
+  padding:0 24px;
+  border-top:1px solid rgba(255,255,255,.10);
+  background:rgba(10,11,10,.96);
+  backdrop-filter:blur(20px)
+}
+.app.listen .listen-player{display:grid}
+.listen-now{display:flex;align-items:center;gap:11px;min-width:0}
+.listen-now img{width:52px;height:52px;border-radius:5px;object-fit:cover}
+.listen-now-copy{min-width:0}
+.listen-now-copy strong{display:block;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.listen-now-copy small{display:block;color:#7d857f;font-size:9px;margin-top:3px}
+.listen-player-center{text-align:center}
+.listen-controls{display:flex;justify-content:center;align-items:center;gap:18px}
+.listen-control{
+  border:0;background:none;color:#aaa;cursor:pointer;font-size:13px;padding:4px
+}
+.listen-control:hover{color:#fff}
+.listen-control.main{
+  width:34px;height:34px;border-radius:50%;
+  display:grid;place-items:center;
+  padding:0;
+  background:#f4f4f2;color:#090a09;font-size:12px
+}
+.listen-control.main svg{
+  width:20px;
+  height:20px;
+  display:block;
+  fill:currentColor;
+}
+.listen-control.main .play-icon{
+  transform:none;
+}
+.listen-control.main .pause-icon{
+  transform:translateX(.6px);
+}
+.listen-control.main .pause-icon rect{
+  rx:1.2;
+}
+.listen-progress-row{display:grid;grid-template-columns:34px 1fr 34px;gap:8px;align-items:center;margin-top:6px}
+.listen-progress-row span{font-size:8px;color:#747a76}
+.listen-progress-track{height:3px;background:#353a36;border-radius:999px;overflow:hidden}
+.listen-progress-fill{width:28%;height:100%;background:#c8cec9;border-radius:999px}
+.listen-volume{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  gap:8px;
+  min-width:150px;
+  color:#838a85;
+  font-size:9px
+}
+.listen-volume-mute{
+  width:28px;
+  height:28px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:0;
+  background:transparent;
+  color:#aeb4af;
+  font-size:13px;
+  cursor:pointer
+}
+.listen-volume-mute:hover{color:#fff}
+.listen-volume-slider{
+  width:92px;
+  height:18px;
+  margin:0;
+  appearance:none;
+  -webkit-appearance:none;
+  background:transparent;
+  cursor:pointer
+}
+.listen-volume-slider::-webkit-slider-runnable-track{
+  height:3px;
+  border-radius:999px;
+  background:linear-gradient(90deg,#d8dcd9 0 var(--listen-volume-pct,72%),#303531 var(--listen-volume-pct,72%) 100%)
+}
+.listen-volume-slider::-webkit-slider-thumb{
+  width:10px;
+  height:10px;
+  margin-top:-3.5px;
+  border:0;
+  border-radius:50%;
+  appearance:none;
+  -webkit-appearance:none;
+  background:#f4f5f3;
+  box-shadow:0 0 0 3px rgba(255,255,255,.06)
+}
+.listen-volume-slider::-moz-range-track{
+  height:3px;
+  border-radius:999px;
+  background:#303531
+}
+.listen-volume-slider::-moz-range-progress{
+  height:3px;
+  border-radius:999px;
+  background:#d8dcd9
+}
+.listen-volume-slider::-moz-range-thumb{
+  width:10px;
+  height:10px;
+  border:0;
+  border-radius:50%;
+  background:#f4f5f3
+}
+.listen-volume-value{
+  width:22px;
+  color:#737a75;
+  font-variant-numeric:tabular-nums;
+  text-align:right
+}
+@keyframes listenPlayPulse{
+  0%,100%{box-shadow:0 8px 22px rgba(30,215,96,.22);filter:brightness(1)}
+  50%{box-shadow:0 12px 28px rgba(30,215,96,.38);filter:brightness(1.04)}
+}
+
+@media(max-width:1120px){
+  .listen-album-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .listen-quick{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .listen-tracks-wrap{grid-template-columns:1fr}
+  .listen-side-panel{display:none}
+}
+@media(max-width:760px){
+  .listen-view{padding:92px 18px 110px}
+  .listen-topline{display:block}
+  .listen-quick{grid-template-columns:1fr}
+  .listen-album-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+  .listen-track{grid-template-columns:22px 40px minmax(0,1fr) 36px;padding-left:10px;padding-right:10px}
+  .listen-track-album{display:none}
+  .listen-player{height:72px;padding:0 12px;grid-template-columns:1fr auto}
+  .listen-player-center{display:none}
+  .listen-volume{display:none}
+}
+</style>
+
+
+<style>
+/* =========================================================
+   LIBRARY MUSIC GROUP — Spotify-style treatment
+   ========================================================= */
+.app.library .library-music-group{
+  padding-top:42px;
+  background:transparent;
+}
+.app.library .library-music-group .library-group-head{
+  margin-bottom:20px;
+}
+.library-music-grid{
+  display:grid;
+  grid-template-columns:repeat(7,minmax(0,1fr));
+  gap:16px;
+}
+.library-music-card{
+  position:relative;
+  min-width:0;
+  border:0;
+  border-radius:10px;
+  padding:12px;
+  background:#111412;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+  transition:background .22s ease,transform .22s ease;
+}
+.library-music-card:hover,
+.library-music-card:focus-visible{
+  background:#1a1f1b;
+  transform:translateY(-4px);
+  outline:none;
+}
+.library-music-art{
+  position:relative;
+  display:block;
+  aspect-ratio:1;
+  overflow:hidden;
+  border-radius:7px;
+  background:#181b19;
+  box-shadow:0 12px 28px rgba(0,0,0,.34);
+}
+.library-music-art img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.library-music-kind{
+  position:absolute;
+  z-index:2;
+  left:9px;
+  top:9px;
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:999px;
+  background:rgba(8,10,9,.68);
+  backdrop-filter:blur(8px);
+  color:#dadeda;
+  font-size:7.5px;
+  font-weight:750;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.library-music-play{
+  position:absolute;
+  z-index:3;
+  right:10px;
+  bottom:10px;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#1ed760;
+  color:#071008;
+  box-shadow:0 10px 26px rgba(0,0,0,.45);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .2s ease,transform .2s ease,filter .2s ease;
+  line-height:0;
+}
+.library-music-play svg{
+  width:17px;
+  height:17px;
+  display:block;
+  fill:currentColor;
+  flex:0 0 auto;
+  transform:translateX(.9px);
+}
+.library-music-card:hover .library-music-play,
+.library-music-card:focus-visible .library-music-play{
+  opacity:1;
+  transform:none;
+}
+.library-music-card:hover .library-music-play:hover{
+  filter:brightness(1.08);
+}
+.library-music-copy{
+  display:block;
+  padding-top:11px;
+  min-width:0;
+}
+.library-music-copy strong{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:12px;
+  line-height:1.25;
+}
+.library-music-copy small{
+  display:block;
+  min-height:27px;
+  margin-top:5px;
+  color:#858c87;
+  font-size:9.5px;
+  line-height:1.35;
+}
+.library-music-note{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  margin-top:16px;
+  color:#737a75;
+  font-size:9px;
+  letter-spacing:.08em;
+}
+.library-music-note:before{
+  content:"";
+  width:18px;
+  height:2px;
+  border-radius:999px;
+  background:#1ed760;
+}
+@media(max-width:1350px){
+  .library-music-grid{grid-template-columns:repeat(5,minmax(0,1fr))}
+}
+@media(max-width:980px){
+  .library-music-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media(max-width:760px){
+  .library-music-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .library-music-card{padding:10px}
+}
+</style>
+
+<style>.search-overlay{position:fixed;z-index:190;inset:0;display:none;background:rgba(4,4,6,.86);backdrop-filter:blur(16px);overflow:auto}.search-overlay.open{display:block}.search-shell{width:min(980px,90vw);margin:112px auto 80px}.search-top{display:flex;gap:14px;align-items:center}.search-input{flex:1;height:58px;border:1px solid rgba(255,255,255,.2);border-radius:8px;background:#111217;color:#fff;padding:0 20px;font-size:22px;outline:none}.search-input:focus{border-color:#fff}.search-close{width:48px;height:48px;border:1px solid rgba(255,255,255,.2);border-radius:50%;background:#111217;color:#fff;font-size:24px;cursor:pointer}.search-hint{color:#77757c;font-size:10px;letter-spacing:.12em;text-transform:uppercase;margin:14px 0 28px}.search-results{display:grid;gap:28px}.search-group h2{font-size:18px;margin:0 0 12px}.search-group h2 span{color:#77757c;font-size:10px;font-weight:400;margin-left:8px;text-transform:uppercase}.search-result-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}.search-result{border:1px solid rgba(255,255,255,.1);background:#101116;color:#fff;padding:0 0 12px;text-align:left;cursor:pointer;border-radius:7px;overflow:hidden;transition:.2s}.search-result:hover,.search-result:focus-visible{border-color:var(--accent);transform:translateY(-3px);outline:none}.search-result img{width:100%;aspect-ratio:2/3;display:block;object-fit:cover;background:#17181e}.search-result strong,.search-result small{display:block;padding:0 10px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.search-result strong{font-size:12px;margin-top:9px}.search-result small{color:#85838b;font-size:10px;margin-top:4px}.search-empty{padding:50px 0;color:#aaa7ae;text-align:center}.player-video{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;background:#020204}.player-center-play{width:76px;height:76px;border:1px solid rgba(255,255,255,.5);border-radius:50%;background:rgba(8,8,10,.58);color:#fff;font-size:24px;cursor:pointer}.player-topbar{position:absolute;z-index:3;left:34px;right:34px;top:24px;display:flex;justify-content:space-between;align-items:center}.player-heading{font-size:16px;text-shadow:0 2px 12px #000}.player-close{width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.24);background:rgba(5,5,7,.58);color:#fff;font-size:22px;cursor:pointer}.player-controls{position:absolute;z-index:3;left:34px;right:34px;bottom:28px;padding:16px 18px 12px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:rgba(8,8,11,.8);backdrop-filter:blur(14px)}.player-range{width:100%;accent-color:var(--accent);cursor:pointer}.player-control-row{display:flex;align-items:center;gap:10px;margin-top:8px}.player-control{border:0;background:none;color:#fff;padding:6px 8px;cursor:pointer}.player-time{color:#aaa7ae;font-size:10px;min-width:72px}.player-spacer{flex:1}.player-menu{position:relative}.player-popover{position:absolute;right:0;bottom:42px;display:none;min-width:170px;padding:10px;border:1px solid rgba(255,255,255,.16);border-radius:8px;background:#101116;box-shadow:0 14px 40px #000}.player-popover.open{display:block}.player-popover button{display:block;width:100%;border:0;background:none;color:#ddd;text-align:left;padding:8px;cursor:pointer;font-size:11px}.player-error{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-50%);display:none;width:min(420px,80vw);padding:22px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:rgba(10,10,14,.92);text-align:center}.player.error .player-error{display:block}.player-error strong{display:block;font-size:18px}.player-error small{display:block;color:#aaa;margin:10px 0 18px}.player-error button{height:40px;border:1px solid rgba(255,255,255,.25);background:#15161b;color:#fff;padding:0 16px;cursor:pointer}@media(max-width:760px){.search-shell{width:calc(100vw - 36px);margin-top:92px}.search-input{font-size:17px}.search-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.player-topbar{left:16px;right:16px}.player-controls{left:14px;right:14px;bottom:18px}.player-time{min-width:58px}}</style>
+<style>
+/* =========================================================
+   SEARCH — cinematic / premium overlay
+   ========================================================= */
+.search-overlay{
+  position:fixed;
+  z-index:190;
+  inset:0;
+  display:none;
+  overflow:auto;
+  background:
+    radial-gradient(circle at 82% 12%,rgba(237,35,56,.16),transparent 27%),
+    radial-gradient(circle at 15% 0%,rgba(255,255,255,.045),transparent 25%),
+    rgba(4,4,6,.94);
+  backdrop-filter:blur(24px) saturate(.78);
+}
+.search-overlay.open{display:block;animation:searchOverlayIn .24s ease both}
+.search-ambient{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.44;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.025),transparent 20%),
+    radial-gradient(circle at 50% 18%,rgba(var(--accent-rgb),.08),transparent 33%);
+}
+.search-shell{
+  position:relative;
+  z-index:1;
+  width:min(1120px,92vw);
+  margin:90px auto 90px;
+}
+.search-eyebrow{
+  margin:0 0 13px 3px;
+  color:rgba(255,255,255,.56);
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+}
+.search-top{display:flex;gap:12px;align-items:center}
+.search-field{
+  position:relative;
+  flex:1;
+  height:68px;
+  display:flex;
+  align-items:center;
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:16px;
+  background:rgba(15,16,20,.76);
+  box-shadow:
+    0 18px 60px rgba(0,0,0,.36),
+    inset 0 1px rgba(255,255,255,.025);
+  transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.search-field:focus-within{
+  border-color:rgba(255,255,255,.42);
+  background:rgba(18,19,24,.92);
+  box-shadow:
+    0 22px 70px rgba(0,0,0,.45),
+    0 0 0 3px rgba(var(--accent-rgb),.08);
+}
+.search-field-icon{
+  flex:0 0 auto;
+  width:22px;
+  height:22px;
+  margin-left:20px;
+  fill:none;
+  stroke:#a8a8ad;
+  stroke-width:1.8;
+  stroke-linecap:round;
+}
+.search-input{
+  min-width:0;
+  flex:1;
+  height:100%;
+  border:0!important;
+  outline:0!important;
+  background:transparent!important;
+  color:#fff;
+  padding:0 16px;
+  font-size:clamp(19px,2vw,27px);
+  font-weight:520;
+  letter-spacing:-.025em;
+  box-shadow:none!important;
+}
+.search-input::placeholder{color:#696a70}
+.search-key{
+  margin-right:16px;
+  padding:5px 7px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:6px;
+  color:#74757b;
+  font-size:8px;
+  font-weight:800;
+  letter-spacing:.11em;
+}
+.search-close{
+  width:54px;
+  height:54px;
+  flex:0 0 54px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.15);
+  border-radius:50%;
+  background:rgba(15,16,20,.7);
+  color:#d8d8db;
+  cursor:pointer;
+  transition:.2s;
+}
+.search-close svg{
+  width:20px;height:20px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round
+}
+.search-close:hover{
+  color:#fff;
+  border-color:rgba(255,255,255,.36);
+  background:rgba(255,255,255,.08);
+  transform:rotate(5deg);
+}
+.search-hint{
+  margin:13px 3px 14px;
+  color:#6f7076;
+  font-size:9px;
+  letter-spacing:.095em;
+  text-transform:uppercase;
+}
+.search-chips{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  margin:0 0 34px;
+}
+.search-chips button{
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;
+  background:rgba(255,255,255,.035);
+  color:#9d9da3;
+  padding:8px 12px;
+  font-size:9px;
+  cursor:pointer;
+  transition:.18s;
+}
+.search-chips button:hover{
+  color:#fff;
+  border-color:rgba(var(--accent-rgb),.55);
+  background:rgba(var(--accent-rgb),.09);
+}
+.search-results{display:grid;gap:34px}
+.search-group{
+  padding-top:4px;
+  border-top:1px solid rgba(255,255,255,.07);
+}
+.search-group h2{
+  display:flex;
+  align-items:baseline;
+  gap:9px;
+  margin:17px 0 14px;
+  font-size:20px;
+  letter-spacing:-.025em;
+}
+.search-group h2 span{
+  margin:0;
+  color:#66676d;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.search-result-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:13px;
+}
+.search-result{
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;
+  background:#0e0f13;
+  color:#fff;
+  padding:0 0 12px;
+  text-align:left;
+  cursor:pointer;
+  transition:transform .22s,border-color .22s,background .22s,box-shadow .22s;
+}
+.search-result:hover,.search-result:focus-visible{
+  transform:translateY(-5px) scale(1.015);
+  border-color:rgba(var(--accent-rgb),.55);
+  background:#15161b;
+  box-shadow:0 15px 40px rgba(0,0,0,.4);
+  outline:none;
+}
+.search-result img{
+  width:100%;
+  aspect-ratio:2/3;
+  display:block;
+  object-fit:cover;
+  background:#17181e;
+}
+.search-result strong,.search-result small{
+  display:block;
+  padding:0 11px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.search-result strong{font-size:12px;margin-top:10px}
+.search-result small{color:#777980;font-size:9.5px;margin-top:4px}
+.search-empty{
+  position:relative;
+  margin-top:30px;
+  padding:70px 20px;
+  border:1px dashed rgba(255,255,255,.08);
+  border-radius:14px;
+  background:rgba(255,255,255,.018);
+  color:#8b8b91;
+  text-align:center;
+  font-size:14px;
+}
+.search-empty:before{
+  content:"⌕";
+  display:block;
+  margin-bottom:10px;
+  color:#5f6065;
+  font-size:32px;
+}
+
+/* =========================================================
+   PLAYER — Netflix-inspired cinematic controls
+   ========================================================= */
+.player{
+  background:#000!important;
+  overflow:hidden;
+}
+.player-bg{
+  opacity:.16;
+  filter:blur(24px) brightness(.3);
+  transform:scale(1.06);
+}
+.player-video{
+  z-index:1;
+  object-fit:contain;
+  background:#000;
+}
+.player-cinematic-shade{
+  position:absolute;
+  z-index:2;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.54) 0,transparent 17%,transparent 63%,rgba(0,0,0,.2) 72%,rgba(0,0,0,.92) 100%),
+    linear-gradient(90deg,rgba(0,0,0,.22),transparent 20%,transparent 80%,rgba(0,0,0,.16));
+}
+.player-ui{
+  z-index:3;
+  pointer-events:none;
+}
+.player-center-play{
+  pointer-events:auto;
+  width:76px;
+  height:76px;
+  display:grid;
+  place-items:center;
+  padding:0;
+  border:1px solid rgba(255,255,255,.52);
+  border-radius:50%;
+  background:rgba(0,0,0,.38);
+  color:#fff;
+  backdrop-filter:blur(8px);
+  box-shadow:0 12px 36px rgba(0,0,0,.38);
+  cursor:pointer;
+  transition:transform .2s,background .2s,border-color .2s;
+}
+.player-center-play:hover{
+  transform:scale(1.08);
+  border-color:#fff;
+  background:rgba(255,255,255,.10);
+}
+.player-center-play svg{
+  width:31px;height:31px;fill:currentColor
+}
+.player-center-icon-play{transform:translateX(2px)}
+.player.playing .player-center-play{
+  opacity:0;
+  transform:scale(.92);
+  pointer-events:none;
+}
+.player-topbar{
+  z-index:5;
+  left:34px;
+  right:auto;
+  top:25px;
+  display:flex;
+  justify-content:flex-start;
+  gap:15px;
+  align-items:center;
+}
+.player-close{
+  width:42px;height:42px;
+  display:grid;place-items:center;
+  padding:0;
+  border:0;
+  border-radius:50%;
+  background:rgba(0,0,0,.34);
+  color:#fff;
+  cursor:pointer;
+  transition:background .18s,transform .18s;
+}
+.player-close:hover{background:rgba(255,255,255,.12);transform:translateX(-2px)}
+.player-close svg{
+  width:27px;height:27px;
+  fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round
+}
+.player-heading{
+  max-width:min(620px,65vw);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:17px;
+  font-weight:650;
+  text-shadow:0 2px 16px #000;
+}
+.player-controls{
+  z-index:5;
+  left:34px;
+  right:34px;
+  bottom:24px;
+  padding:0;
+  border:0;
+  border-radius:0;
+  background:transparent;
+  backdrop-filter:none;
+}
+.player-progress-wrap{height:18px;display:flex;align-items:center}
+.player-range{
+  width:100%;
+  height:4px;
+  margin:0;
+  appearance:none;
+  -webkit-appearance:none;
+  border-radius:999px;
+  outline:none;
+  cursor:pointer;
+  background:linear-gradient(90deg,#e50914 0%,#e50914 var(--player-progress,0%),rgba(255,255,255,.36) var(--player-progress,0%),rgba(255,255,255,.36) 100%);
+}
+.player-range::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
+  width:14px;height:14px;
+  border:0;border-radius:50%;
+  background:#e50914;
+  box-shadow:0 0 0 2px rgba(0,0,0,.28);
+}
+.player-range::-moz-range-thumb{
+  width:14px;height:14px;
+  border:0;border-radius:50%;
+  background:#e50914;
+}
+.player-control-row{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:7px;
+}
+.player-control-cluster{
+  display:flex;
+  align-items:center;
+  gap:5px;
+}
+.player-control-right{gap:8px}
+.player-control{
+  border:0;
+  background:none;
+  color:rgba(255,255,255,.9);
+  cursor:pointer;
+  transition:transform .16s,color .16s,background .16s;
+}
+.player-control:hover{color:#fff;transform:scale(1.08)}
+.player-icon-control{
+  width:39px;height:39px;
+  display:grid;place-items:center;
+  padding:0;
+  border-radius:4px;
+}
+.player-icon-control svg{
+  width:25px;height:25px;
+  fill:none;stroke:currentColor;stroke-width:1.75;
+  stroke-linecap:round;stroke-linejoin:round
+}
+.player-icon-control svg path[fill],
+.player-inline-icon{fill:currentColor!important;stroke:none!important}
+#playerPlayPause .player-inline-icon{
+  width:28px;height:28px;fill:currentColor;stroke:none
+}
+.player-skip-control svg text{
+  fill:currentColor;
+  stroke:none;
+  font:700 6px "Segoe UI",Arial,sans-serif;
+}
+#playerMute .player-volume-icon path:first-child{fill:currentColor;stroke:none}
+.player-time{
+  min-width:84px;
+  margin-left:4px;
+  color:rgba(255,255,255,.72);
+  font-size:10px;
+  font-variant-numeric:tabular-nums;
+}
+.player-text-control{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:7px 8px;
+  border-radius:4px;
+  color:#fff;
+  font-size:10px;
+}
+.player-text-control svg{
+  width:21px;height:21px;
+  fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round
+}
+.player-text-control:hover{background:rgba(255,255,255,.08)}
+.player-popover{
+  right:0;
+  bottom:48px;
+  min-width:205px;
+  padding:8px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:8px;
+  background:rgba(23,23,23,.96);
+  box-shadow:0 18px 50px rgba(0,0,0,.58);
+  backdrop-filter:blur(18px);
+}
+.player-popover button{
+  border-radius:4px;
+  padding:10px;
+  color:#ddd;
+}
+.player-popover button:hover{background:rgba(255,255,255,.09);color:#fff}
+.player-error{
+  z-index:8;
+  border-color:rgba(255,255,255,.12);
+  background:rgba(16,16,16,.96);
+  box-shadow:0 22px 80px rgba(0,0,0,.64);
+}
+.player-error button{
+  border:0;
+  border-radius:4px;
+  background:#fff;
+  color:#111;
+  font-weight:700;
+}
+@keyframes searchOverlayIn{
+  from{opacity:0;transform:translateY(-6px)}
+  to{opacity:1;transform:none}
+}
+@media(max-width:760px){
+  .search-shell{width:calc(100vw - 28px);margin-top:78px}
+  .search-eyebrow{display:none}
+  .search-field{height:58px;border-radius:13px}
+  .search-field-icon{margin-left:15px;width:19px;height:19px}
+  .search-input{font-size:18px;padding-left:11px}
+  .search-key{display:none}
+  .search-close{width:46px;height:46px;flex-basis:46px}
+  .search-result-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .player-topbar{left:13px;top:13px}
+  .player-heading{font-size:14px}
+  .player-controls{left:14px;right:14px;bottom:16px}
+  .player-text-control span{display:none}
+  .player-control-right{gap:2px}
+  .player-skip-control{display:none}
+  .player-time{min-width:66px;font-size:9px}
+}
+</style>
+
+
+<style>
+/* =========================================================
+   PLAYER — Netflix-like fullscreen treatment
+   ========================================================= */
+.player{
+  --nf-red:#e50914;
+  background:#000!important;
+  cursor:default;
+}
+.player.cursor-hidden{cursor:none}
+
+.player-bg{display:none}
+.player-video{
+  z-index:1;
+  object-fit:contain;
+  background:#000;
+}
+.player-cinematic-shade{
+  z-index:2;
+  opacity:1;
+  transition:opacity .28s ease;
+  background:
+    linear-gradient(180deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.18) 13%,transparent 28%),
+    linear-gradient(0deg,rgba(0,0,0,.88) 0%,rgba(0,0,0,.38) 18%,transparent 42%);
+}
+.player:not(.ui-visible) .player-cinematic-shade{opacity:.15}
+
+.player-topbar,
+.player-controls{
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+  transition:opacity .22s ease,transform .22s ease;
+}
+.player.ui-visible .player-topbar,
+.player.ui-visible .player-controls,
+.player:not(.playing) .player-topbar,
+.player:not(.playing) .player-controls{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.player-topbar{
+  position:absolute;
+  z-index:6;
+  left:26px;
+  right:auto;
+  top:22px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+.player-close{
+  width:52px;
+  height:52px;
+  border:0!important;
+  border-radius:50%;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+.player-close:hover{
+  background:rgba(255,255,255,.08)!important;
+  transform:translateX(-2px) scale(1.05);
+}
+.player-close svg{width:34px;height:34px;stroke-width:2.15}
+.player-heading{
+  display:none; /* title is shown down with the timeline like Netflix */
+}
+
+.player-ui{
+  z-index:4;
+  pointer-events:none;
+}
+.player-center-play{
+  pointer-events:auto;
+  width:86px;
+  height:86px;
+  border:0!important;
+  background:rgba(0,0,0,.34)!important;
+  box-shadow:none!important;
+  opacity:0;
+  transform:scale(.9);
+  transition:opacity .18s ease,transform .18s ease;
+}
+.player:not(.playing) .player-center-play{
+  opacity:1;
+  transform:none;
+}
+.player-center-play:hover{
+  background:rgba(0,0,0,.5)!important;
+  transform:scale(1.05)!important;
+}
+.player-center-play svg{
+  width:42px;
+  height:42px;
+}
+.player-center-icon-play{transform:translateX(3px)}
+
+.player-feedback{
+  position:absolute;
+  z-index:7;
+  left:50%;
+  top:50%;
+  width:92px;
+  height:92px;
+  display:grid;
+  place-items:center;
+  transform:translate(-50%,-50%) scale(.82);
+  border-radius:50%;
+  background:rgba(0,0,0,.46);
+  color:#fff;
+  font-size:25px;
+  font-weight:800;
+  opacity:0;
+  pointer-events:none;
+}
+.player-feedback.show{animation:nfFeedback .46s ease both}
+
+.player-controls{
+  position:absolute;
+  z-index:6;
+  left:3.4vw;
+  right:3.4vw;
+  bottom:26px;
+  padding:0!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  backdrop-filter:none!important;
+  box-shadow:none!important;
+}
+.player-now-watching{
+  display:flex;
+  align-items:baseline;
+  gap:10px;
+  margin:0 0 13px 2px;
+  color:#fff;
+  text-shadow:0 2px 12px rgba(0,0,0,.8);
+}
+.player-now-watching small{
+  color:rgba(255,255,255,.72);
+  font-size:11px;
+  font-weight:600;
+}
+.player-now-watching strong{
+  max-width:min(680px,65vw);
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:15px;
+  font-weight:700;
+}
+
+.player-progress-wrap{
+  height:18px;
+  display:flex;
+  align-items:center;
+}
+.player-range{
+  width:100%;
+  height:4px;
+  margin:0;
+  appearance:none;
+  -webkit-appearance:none;
+  border-radius:0;
+  outline:none;
+  cursor:pointer;
+  background:linear-gradient(
+    90deg,
+    var(--nf-red) 0%,
+    var(--nf-red) var(--player-progress,0%),
+    rgba(255,255,255,.42) var(--player-progress,0%),
+    rgba(255,255,255,.42) 100%
+  );
+  transition:height .12s ease;
+}
+.player-range:hover{height:6px}
+.player-range::-webkit-slider-thumb{
+  appearance:none;
+  -webkit-appearance:none;
+  width:16px;
+  height:16px;
+  border:0;
+  border-radius:50%;
+  background:var(--nf-red);
+  opacity:0;
+  transition:opacity .12s ease,transform .12s ease;
+}
+.player-range:hover::-webkit-slider-thumb{opacity:1;transform:scale(1.06)}
+.player-range::-moz-range-thumb{
+  width:16px;
+  height:16px;
+  border:0;
+  border-radius:50%;
+  background:var(--nf-red);
+}
+
+.player-control-row{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-top:4px;
+}
+.player-control-cluster{
+  display:flex;
+  align-items:center;
+  gap:1px;
+}
+.player-control-right{gap:4px}
+
+.player-control,
+.player-icon-control{
+  position:relative;
+  width:47px;
+  height:47px;
+  display:grid;
+  place-items:center;
+  padding:0!important;
+  border:0!important;
+  border-radius:50%;
+  background:transparent!important;
+  color:#fff!important;
+  opacity:1;
+  box-shadow:none!important;
+  transform:none;
+}
+.player-control:hover,
+.player-icon-control:hover{
+  transform:scale(1.12);
+  background:rgba(255,255,255,.07)!important;
+}
+.player-control svg,
+.player-icon-control svg{
+  width:30px;
+  height:30px;
+  fill:none;
+  stroke:currentColor;
+  stroke-width:1.85;
+  stroke-linecap:round;
+  stroke-linejoin:round;
+}
+#playerPlayPause .player-inline-icon{
+  width:34px;
+  height:34px;
+  fill:currentColor!important;
+  stroke:none!important;
+}
+.player-skip-control svg text{
+  fill:currentColor;
+  stroke:none;
+  font:800 6px "Segoe UI",Arial,sans-serif;
+}
+#playerMute .player-volume-icon path:first-child{
+  fill:currentColor;
+  stroke:none;
+}
+.player-time{
+  min-width:100px;
+  margin-left:8px;
+  color:rgba(255,255,255,.72);
+  font-size:11px;
+  font-variant-numeric:tabular-nums;
+}
+.player-spacer{flex:1}
+
+.player-menu{position:relative}
+.player-popover{
+  position:absolute;
+  right:0;
+  bottom:56px;
+  display:none;
+  min-width:230px;
+  padding:9px;
+  border:0!important;
+  border-radius:7px;
+  background:rgba(28,28,28,.97)!important;
+  box-shadow:0 18px 55px rgba(0,0,0,.68);
+}
+.player-popover.open{display:block}
+.player-popover:after{
+  content:"";
+  position:absolute;
+  right:18px;
+  bottom:-7px;
+  width:14px;height:14px;
+  background:inherit;
+  transform:rotate(45deg);
+}
+.player-popover button{
+  position:relative;
+  z-index:1;
+  display:block;
+  width:100%;
+  border:0;
+  border-radius:4px;
+  background:transparent;
+  color:#e7e7e7;
+  text-align:left;
+  padding:11px 12px;
+  cursor:pointer;
+  font-size:12px;
+}
+.player-popover button:hover{background:rgba(255,255,255,.1);color:#fff}
+
+.player-control[data-tooltip]:after{
+  content:attr(data-tooltip);
+  position:absolute;
+  left:50%;
+  bottom:57px;
+  transform:translateX(-50%) translateY(4px);
+  padding:7px 9px;
+  border-radius:4px;
+  background:#fff;
+  color:#111;
+  font-size:10px;
+  font-weight:700;
+  white-space:nowrap;
+  opacity:0;
+  pointer-events:none;
+  transition:.14s ease;
+}
+.player-control[data-tooltip]:hover:after{
+  opacity:1;
+  transform:translateX(-50%) translateY(0);
+}
+
+.player-error{
+  z-index:9;
+  border:0!important;
+  border-radius:6px!important;
+  background:rgba(20,20,20,.98)!important;
+}
+.player-error button{
+  border:0!important;
+  border-radius:4px;
+  background:#fff!important;
+  color:#111!important;
+  font-weight:700;
+}
+
+@keyframes nfFeedback{
+  0%{opacity:0;transform:translate(-50%,-50%) scale(.72)}
+  25%{opacity:1;transform:translate(-50%,-50%) scale(1)}
+  100%{opacity:0;transform:translate(-50%,-50%) scale(1.08)}
+}
+@media(max-width:760px){
+  .player-topbar{left:10px;top:10px}
+  .player-close{width:46px;height:46px}
+  .player-controls{left:16px;right:16px;bottom:14px}
+  .player-now-watching small{display:none}
+  .player-now-watching strong{font-size:13px}
+  .player-control,.player-icon-control{width:40px;height:40px}
+  .player-control svg,.player-icon-control svg{width:27px;height:27px}
+  #playerPlayPause .player-inline-icon{width:30px;height:30px}
+  .player-skip-control{display:none}
+  #playerPrevious{display:none}
+  .player-time{min-width:70px;font-size:9px;margin-left:3px}
+}
+
+/* v0.5.3 — details screen polish */
+html:has(#details.open),
+body:has(#details.open){
+  overflow:hidden!important;
+}
+.details.open{
+  overflow:hidden!important;
+  scrollbar-width:none!important;
+}
+.details.open::-webkit-scrollbar{
+  width:0!important;
+  height:0!important;
+  display:none!important;
+}
+.details-backdrop{
+  background:#05070b!important;
+  overflow:hidden!important;
+}
+.details-backdrop:before{
+  display:block!important;
+  content:"";
+  position:absolute;
+  inset:-7%;
+  z-index:0;
+  background-image:var(--detail-backdrop);
+  background-size:cover;
+  background-position:center;
+  filter:blur(18px) brightness(.34) saturate(.82);
+  transform:scale(1.09);
+  opacity:1;
+}
+.details-backdrop:after{
+  display:block!important;
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:3;
+  background:
+    radial-gradient(circle at 60% 42%,transparent 0 18%,rgba(1,3,7,.12) 48%,rgba(1,3,7,.36) 100%),
+    linear-gradient(90deg,rgba(1,3,7,.36),rgba(1,3,7,.13) 48%,rgba(1,3,7,.35)),
+    linear-gradient(0deg,rgba(1,3,7,.42),transparent 45%,rgba(1,3,7,.24));
+  pointer-events:none;
+}
+.details-backdrop .details-preview-video{
+  position:absolute!important;
+  z-index:1!important;
+  inset:-6%!important;
+  width:112%!important;
+  height:112%!important;
+  object-fit:cover!important;
+  object-position:center!important;
+  filter:blur(16px) brightness(.34) saturate(.84)!important;
+  transform:scale(1.10)!important;
+  opacity:0!important;
+  transition:opacity .65s ease!important;
+  pointer-events:none!important;
+}
+.details-backdrop .details-preview-video.is-playing{
+  opacity:.96!important;
+}
+.details-card{
+  max-height:calc(100vh - 96px)!important;
+}
+
+
+/* v0.5.4 — refined welcome copy */
+.intro-tagline{
+  max-width:620px;
+  margin-left:auto;
+  margin-right:auto;
+  line-height:1.75;
+}
+
+
+/* v0.6.1 — keep fixed Atmospheres video at stable viewport geometry during transitions */
+body.section-moving .app.atmospheres{
+  transform:none!important;
+}
+
+
+/* v0.6.2 — stable Atmospheres entry: opacity only, never scale the video */
+.app.hed-atmos-fade{
+  opacity:0!important;
+  transition:opacity .14s ease!important;
+}
+
+
+/* v0.6.3 — music search uses the same square visual language as Library */
+.search-music-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(155px,1fr));
+  gap:14px;
+}
+.search-music-card{
+  position:relative;
+  min-width:0;
+  border:0;
+  border-radius:10px;
+  padding:11px;
+  background:#111412;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+  transition:background .22s ease,transform .22s ease,box-shadow .22s ease;
+}
+.search-music-card:hover,
+.search-music-card:focus-visible{
+  background:#1a1f1b;
+  transform:translateY(-4px);
+  box-shadow:0 16px 38px rgba(0,0,0,.32);
+  outline:none;
+}
+.search-music-art{
+  position:relative;
+  display:block;
+  aspect-ratio:1;
+  overflow:hidden;
+  border-radius:7px;
+  background:#181b19;
+  box-shadow:0 12px 28px rgba(0,0,0,.34);
+}
+.search-music-art img{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+}
+.search-music-kind{
+  position:absolute;
+  z-index:2;
+  left:9px;
+  top:9px;
+  padding:5px 8px;
+  border:1px solid rgba(255,255,255,.13);
+  border-radius:999px;
+  background:rgba(8,10,9,.68);
+  backdrop-filter:blur(8px);
+  color:#dadeda;
+  font-size:7.5px;
+  font-weight:750;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+}
+.search-music-play{
+  position:absolute;
+  z-index:3;
+  right:10px;
+  bottom:10px;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:#1ed760;
+  color:#071008;
+  box-shadow:0 10px 26px rgba(0,0,0,.45);
+  opacity:0;
+  transform:translateY(8px);
+  transition:opacity .2s ease,transform .2s ease;
+}
+.search-music-card:hover .search-music-play,
+.search-music-card:focus-visible .search-music-play{
+  opacity:1;
+  transform:none;
+}
+.search-music-copy{
+  display:block;
+  min-width:0;
+  padding-top:10px;
+}
+.search-music-copy strong{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size:12px;
+  line-height:1.25;
+}
+.search-music-copy small{
+  display:block;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  margin-top:5px;
+  color:#858c87;
+  font-size:9.5px;
+}
+@media(max-width:760px){
+  .search-music-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  .search-music-card{padding:9px}
+}
+
+
+/* v0.6.4 — Search owns the only scrollbar while it is open */
+html:has(#searchOverlay.open),
+body:has(#searchOverlay.open){
+  overflow:hidden!important;
+}
+#searchOverlay.search-overlay{
+  overflow-y:auto!important;
+  overflow-x:hidden!important;
+  overscroll-behavior:contain;
+  scrollbar-gutter:stable;
+}
+
+
+/* v0.6.6 — Atmospheres stays visually clean: no current-title message */
+.app.atmospheres .immersive-label{
+  display:none!important;
+}
+
+
+/* v0.6.12 — blue Atmospheres sweep without scaling the fixed video */
+body.atmos-transitioning{
+  overflow:hidden!important;
+}
+body.atmos-transitioning .app{
+  transform:none!important;
+}
+body.atmos-transitioning .app.atmospheres{
+  transform:none!important;
+  filter:none!important;
+}
+
+
+/* v0.6.15 — Atmospheres soundtrack Shuffle */
+#shuffleAtmosSound.active{
+  border-color:#69adff;
+  background:rgba(29,91,145,.58);
+  box-shadow:0 0 0 1px rgba(105,173,255,.12) inset,0 0 24px rgba(105,173,255,.12);
+}
+#shuffleAtmosSound.active span,
+#shuffleAtmosSound.active b{
+  color:#9dcbff;
+}
+@media(max-width:760px){
+  .immersive-controls{grid-template-columns:1fr 1fr}
+}
+
+</style>
+
+<link rel="stylesheet" href="desktop.css">
+</head>
+<body>
+<div class="grain"></div>
+<section class="intro" id="intro" aria-label="Welcome to HED Space">
+  <button class="intro-skip" id="skipIntro">Skip intro</button>
+  <div class="intro-core">
+    <svg class="intro-mark" viewBox="0 0 100 100" fill="none" aria-hidden="true"><circle class="ring" cx="50" cy="50" r="35" stroke="currentColor" stroke-width="1"/><path class="arc one" d="M30 41 C40 47 60 47 70 41" stroke="#ed2338" stroke-width="5" stroke-linecap="round" fill="none"/><path class="arc two" d="M33 52 C41 57 59 57 67 52" stroke="#ed2338" stroke-width="4.5" stroke-linecap="round" fill="none"/><path class="arc three" d="M37 63 C44 67 56 67 63 63" stroke="#ed2338" stroke-width="4" stroke-linecap="round" fill="none"/></svg>
+    <div class="intro-kicker">Welcome to HED Space</div>
+    <h2 class="intro-title"><span>Welcome to</span><em>Your space</em></h2>
+    <p class="intro-tagline">Movies, series, music and atmospheres — brought together in one private cinematic experience.</p>
+    <button class="intro-enter" id="enterIntro">Enter HED Space →</button>
+  </div>
+</section>
+<div class="transition-layer" id="transition"><div class="transition-copy"><small id="transitionKicker">Moving through HED Space</small><strong id="transitionTitle">Watch</strong></div></div>
+<header class="header">
+  <div class="brand"><span class="brand-mark"><svg viewBox="0 0 28 28" fill="none" aria-hidden="true"><path d="M5.5 9.4 C9.5 11.9 18.5 11.9 22.5 9.4" stroke="currentColor" stroke-width="3.1" stroke-linecap="round"/><path d="M7.3 14.4 C10.6 16.4 17.4 16.4 20.7 14.4" stroke="currentColor" stroke-width="2.8" stroke-linecap="round"/><path d="M9.4 19.4 C12 20.8 16 20.8 18.6 19.4" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></span>HED SPACE</div>
+  <nav class="nav" aria-label="Primary"><button data-section="home">Home</button><button class="active" data-section="watch">Watch</button><button data-section="listen">Listen</button><button data-section="atmospheres">Atmospheres</button><button data-section="library">Library</button></nav>
+  <div class="utilities">
+  <button class="utility" id="search" aria-label="Search">
+    <svg class="utility-ring" viewBox="0 0 39 39" aria-hidden="true"><circle cx="19.5" cy="19.5" r="18.5"></circle></svg>
+    <svg class="utility-symbol search-symbol" viewBox="0 0 24 24" aria-hidden="true">
+      <circle cx="11" cy="11" r="5.2"></circle>
+      <path d="M15.2 15.2 L20 20"></path>
+    </svg>
+  </button>
+  <button class="utility" id="replayIntro" aria-label="Replay welcome">
+    <svg class="utility-ring" viewBox="0 0 39 39" aria-hidden="true"><circle cx="19.5" cy="19.5" r="18.5"></circle></svg>
+    <span class="utility-symbol sparkle-symbol" aria-hidden="true">✦</span>
+  </button>
+  <button class="utility" id="motionToggle" aria-label="Motion level">
+    <svg class="utility-ring" viewBox="0 0 39 39" aria-hidden="true"><circle cx="19.5" cy="19.5" r="18.5"></circle></svg>
+    <svg class="utility-symbol motion-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <rect x="4" y="9" width="2.4" height="6" rx="1.2"></rect>
+      <rect x="7.4" y="6.5" width="2.4" height="11" rx="1.2"></rect>
+      <rect x="10.8" y="4.5" width="2.4" height="15" rx="1.2"></rect>
+      <rect x="14.2" y="6.5" width="2.4" height="11" rx="1.2"></rect>
+      <rect x="17.6" y="9" width="2.4" height="6" rx="1.2"></rect>
+    </svg>
+  </button>
+</div>
+</header>
+<main class="app watch" id="app" data-section="watch">
+  <section class="standard-view" id="standardView">
+    <div class="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-content" id="heroContent"><div class="eyebrow" id="eyebrow"></div><h1 id="heroTitle"></h1><div class="meta" id="heroMeta"></div><p class="description" id="heroDescription"></p><div class="actions"><button class="primary" id="heroPlay">▶&nbsp; Play</button><button class="secondary" id="heroInfo">More information</button></div></div>
+    </div>
+    <section class="feed" id="feed" aria-label="Content collections"></section>
+    <section class="home-dashboard" id="homeDashboard" aria-label="Your HED Space home"><div class="home-mosaic" id="homeMosaic"></div></section>
+  </section>
+
+  <section class="listen-view" id="listenView" aria-label="Music library">
+    <div class="listen-shell">
+      <div class="listen-topline">
+        <div>
+          <div class="listen-kicker">HED Space · Listen</div>
+          <h1>Your sound<br>Without the file browser</h1>
+        </div>
+      </div>
+
+      <section class="listen-section listen-collections-section">
+        <div class="listen-section-head"><h2>Collections</h2><span>Choose a music folder</span></div>
+        <div class="listen-quick" id="listenQuick"></div>
+      </section>
+
+      <section class="listen-section">
+        <div class="listen-section-head"><h2 id="listenRecentHeading">Recently played</h2><span id="listenRecentSub">Your rotation</span></div>
+        <div class="listen-album-grid" id="listenRecent"></div>
+      </section>
+
+      <section class="listen-section">
+        <div class="listen-section-head"><h2 id="listenMixesHeading">Made for your collection</h2><span id="listenMixesSub">Local mixes</span></div>
+        <div class="listen-album-grid" id="listenMixes"></div>
+      </section>
+
+      <div class="listen-tracks-wrap">
+        <section class="listen-track-panel">
+          <div class="listen-panel-head"><h2 id="listenTrackHeading">All tracks</h2><span id="listenTrackSubheading">Local audio</span></div>
+          <div id="listenTrackList"></div>
+        </section>
+
+        <aside class="listen-side-panel">
+          <h3>For tonight</h3>
+          <div class="listen-side-feature">
+            <img src="../../assets/music_covers/local_square/008_-_Herb_Alpert_-_Ladyfingers_slow_n_reverb.jpg" alt="">
+            <div class="listen-side-feature-copy"><small>After hours</small><strong>Late-night instrumentals</strong></div>
+          </div>
+          <div class="listen-chip-row">
+            <span class="listen-chip">Moroccan rap</span>
+            <span class="listen-chip">Instrumentals</span>
+            <span class="listen-chip">Spacetoon</span>
+            <span class="listen-chip">Soundtracks</span>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="listen-player" id="listenPlayer" aria-label="Now playing">
+    <div class="listen-now">
+      <img id="listenNowArt" src="../../assets/music_covers/local_square/001_-_STORMY_-_PER_LA_VITA.jpg" alt="">
+      <div class="listen-now-copy"><strong id="listenNowTitle">PER LA VITA</strong><small id="listenNowArtist">STORMY</small></div>
+    </div>
+    <div class="listen-player-center">
+      <div class="listen-controls">
+        <button class="listen-control listen-shuffle" id="listenShuffle" aria-label="Shuffle this collection" aria-pressed="false" title="Shuffle this collection">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h3.2c2.1 0 3.3 1 4.7 3.1l.7 1.1"></path>
+            <path d="M15.7 7H20"></path>
+            <path d="m17.5 4.6 2.5 2.4-2.5 2.4"></path>
+            <path d="M4 17h3.2c2.1 0 3.3-1 4.7-3.1l3.2-4.8c1.1-1.6 2.2-2.1 4.9-2.1"></path>
+            <path d="M15.7 17H20"></path>
+            <path d="m17.5 14.6 2.5 2.4-2.5 2.4"></path>
+          </svg>
+        </button>
+        <button class="listen-control" id="listenPrev" aria-label="Previous">◀</button>
+        <button class="listen-control main" id="listenPlayPause" aria-label="Play"><svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.8 6.5 L18.8 12 L8.8 17.5 Z"></path></svg></button>
+        <button class="listen-control" id="listenNext" aria-label="Next">▶</button>
+        <button class="listen-control listen-repeat" id="listenRepeat" aria-label="Repeat current song" aria-pressed="false" title="Repeat current song">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M17.8 6.5H8.2A4.2 4.2 0 0 0 4 10.7v.8"></path>
+            <path d="m15.5 4.2 2.6 2.3-2.6 2.3"></path>
+            <path d="M6.2 17.5h9.6a4.2 4.2 0 0 0 4.2-4.2v-.8"></path>
+            <path d="m8.5 19.8-2.6-2.3 2.6-2.3"></path>
+          </svg>
+          <span class="listen-repeat-one" aria-hidden="true">1</span>
+        </button>
+      </div>
+      <div class="listen-progress-row"><span>0:00</span><div class="listen-progress-track"><div class="listen-progress-fill"></div></div><span>3:14</span></div>
+    </div>
+    <div class="listen-volume">
+      <button class="listen-volume-mute" id="listenVolumeMute" type="button" aria-label="Mute music">🔊</button>
+      <input class="listen-volume-slider" id="listenVolume" type="range" min="0" max="100" value="72" step="1" aria-label="Music volume">
+      <span class="listen-volume-value" id="listenVolumeValue">72</span>
+    </div>
+  </div>
+
+  <section class="library-view" id="libraryView" aria-label="Complete library"><div class="library-hero-art" id="libraryHeroArt" aria-hidden="true"><div class="library-hero-bg" id="libraryHeroBg"></div><div class="library-hero-vignette"></div></div><div class="library-shell"><div class="library-intro"><div><div class="library-kicker">HED Space · Complete library</div><h1>Everything<br>Within reach</h1></div></div><div class="library-tools"><button class="library-filter active" data-library-filter="all">All content</button><button class="library-filter" data-library-filter="media">Movies, Series &amp; Anime</button><button class="library-filter" data-library-filter="childhood">Childhood</button></div><div id="libraryGroups"></div><section class="hed-about" aria-label="About HED Space"><div class="hed-about-mark">HED SPACE</div><div class="hed-about-copy"><div class="hed-about-kicker">PRIVATE MEDIA, BEAUTIFULLY YOURS</div><h2>Your collection<br>Your space</h2><p>HED Space is a private desktop media experience built around the collection you already own. Movies, series, anime, childhood favourites, music, and immersive atmospheres come together in one cinematic interface — with intelligent library scanning, season and episode organisation, custom artwork, resume progress, high-quality local playback, and a presentation designed to feel closer to a premium streaming service than a file browser.</p><p class="hed-about-secondary">Your media stays where you put it. HED Space indexes it locally, preserves your folder structure, and gives you control over how every title looks and plays.</p></div><div class="hed-about-right"><div class="hed-about-local">LOCAL-FIRST<br>DESKTOP MEDIA</div><div class="hed-copyright">© 2026 Houssam Elmouqaddam<br><span>All rights reserved.</span></div></div></section></div></section>
+  <section class="atmos-view" id="atmosView" aria-label="Current Atmosphere">
+    <video class="atmos-video" id="atmosVideo" loop playsinline preload="auto"><source src="media/storm-shelter-preview.mp4" type="video/mp4"></video>
+    <audio id="soundtrackAudio" loop preload="auto"></audio>
+    <div class="atmos-shade"></div><div class="ambient-pulse"></div>
+    <div class="sound-status" id="soundStatus">Original atmosphere</div>
+    <div class="immersive-controls"><button class="glass-action" id="fullscreenAtmos"><span>⛶</span><b id="fullscreenLabel">Fullscreen</b></button><button class="glass-action" id="browseRooms"><span>◫</span>Browse all Atmospheres</button><button class="glass-action" id="chooseSound"><span>♫</span>Soundtrack</button><button class="glass-action atmos-shuffle-action" id="shuffleAtmosSound" aria-pressed="false" title="Shuffle soundtrack songs"><span>⤨</span><b id="shuffleAtmosLabel">Shuffle</b></button></div>
+  </section>
+</main>
+<aside class="panel" id="soundPanel"><button class="panel-close atmos-panel-close" aria-label="Close soundtrack panel"><span class="close-glyph" aria-hidden="true"></span></button><div class="panel-kicker">Atmosphere soundtrack</div><h2>Choose the room’s sound.</h2><p class="panel-intro">Keep the native ambience or replace it with music from your HED Space library.</p><div class="sound-options">
+  <button class="sound-option selected" data-sound="Original atmosphere" data-src=""><span class="sound-wave">≈</span><span><strong>Original atmosphere</strong><small>Native rain, room, or environmental sound</small></span><span>Active</span></button>
+  <button class="sound-option" data-sound="PER LA VITA" data-src="media/per-la-vita-preview.m4a"><img src="../../assets/music_covers/local_square/001_-_STORMY_-_PER_LA_VITA.jpg" alt=""><span><strong>PER LA VITA</strong><small>STORMY · Houssam’s rotation</small></span><span>Play</span></button>
+  <button class="sound-option" data-sound="Spacetoon memories" data-src="media/spacetoon-memory-preview.m4a"><img src="../../assets/music_covers/local_square/012_-_Naruto_-_Sadness_And_Sorrow_Gingertail_Cover.jpg" alt=""><span><strong>Spacetoon memories</strong><small>Childhood soundtrack selection</small></span><span>Play</span></button>
+  <button class="sound-option" data-sound="Late-night instrumental" data-src="media/late-night-preview.m4a"><img src="../../assets/music_covers/local_square/008_-_Herb_Alpert_-_Ladyfingers_slow_n_reverb.jpg" alt=""><span><strong>Late-night instrumental</strong><small>Quiet room rotation</small></span><span>Play</span></button>
+</div><div class="panel-note">Replacement music mutes native ambience by default. The Atmosphere video continues looping independently while the selected soundtrack uses its own timeline.</div></aside>
+<aside class="panel" id="roomPanel"><button class="panel-close atmos-panel-close" aria-label="Close atmosphere browser"><span class="close-glyph" aria-hidden="true"></span></button><div class="panel-kicker">All Atmospheres</div><h2>Enter another room.</h2><p class="panel-intro">The current room keeps moving until another environment is selected.</p><div class="room-options" id="roomOptions"></div></aside>
+<aside class="panel hed-about-panel" id="infoPanel"><button class="panel-close">×</button><div class="panel-kicker">HED SPACE · ABOUT</div><h2 id="infoTitle">Your collection. Your space.</h2><p class="panel-intro" id="infoText">HED Space is a private, local-first desktop media experience that turns the collection you already own into a polished cinematic library. Movies, series, anime, childhood favourites, music, and immersive atmospheres live together in one interface with local scanning, season and episode organisation, custom artwork, resume progress, and high-quality playback.</p><div class="panel-note hed-about-panel-note"><strong>LOCAL-FIRST BY DESIGN</strong><span>Your media stays in the folders you choose. HED Space indexes it locally and gives you control over how every title looks and plays.</span><span class="hed-panel-copyright">© 2026 Houssam Elmouqaddam · All rights reserved.</span></div></aside>
+<aside class="series-panel" id="seriesPanel" aria-label="Series episodes"><button class="series-close" id="seriesClose" aria-label="Close series">×</button><div class="series-head"><img class="series-poster" id="seriesPoster" alt=""><div><div class="series-kicker">Series collection</div><h2 id="seriesTitle"></h2><div class="series-meta" id="seriesMeta"></div></div></div><p class="series-intro" id="seriesIntro"></p><div class="season-list" id="seasonList"></div><div class="episode-list" id="episodeList"></div></aside>
+<section class="player" id="player" aria-label="HED Space player">
+  <div class="player-bg" id="playerBg"></div>
+  <video class="player-video" id="playerVideo" playsinline preload="metadata"></video>
+  <div class="player-cinematic-shade"></div>
+
+  <div class="player-ui">
+    <button class="player-center-play" id="playerCenterPlay" aria-label="Play">
+      <svg class="player-center-icon player-center-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8 19 12 8.2 18.2Z"></path></svg>
+    </button>
+  </div>
+  <div class="player-feedback" id="playerFeedback" aria-hidden="true"></div>
+
+  <div class="player-topbar">
+    <button class="player-close" id="closePlayer" aria-label="Back">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5.5 9 12l6.5 6.5"></path></svg>
+    </button>
+    <strong class="player-heading" id="playerTitle"></strong>
+  </div>
+
+  <div class="player-controls">
+    <div class="player-now-watching">
+      <small>You're watching</small>
+      <strong id="playerBottomTitle"></strong>
+    </div>
+    <div class="player-progress-wrap">
+      <input class="player-range" id="playerRange" type="range" min="0" max="100" value="0" aria-label="Playback position">
+    </div>
+
+    <div class="player-control-row">
+      <div class="player-control-cluster">
+        <button class="player-control player-icon-control" id="playerPlayPause" aria-label="Play" data-tooltip="Play / Pause">
+          <svg class="player-inline-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8 19 12 8.2 18.2Z"></path></svg>
+        </button>
+
+        <button class="player-control player-icon-control player-skip-control" id="playerRewind" aria-label="Rewind 10 seconds" data-tooltip="Back 10 seconds">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 8.2H4.8V4.8"></path><path d="M5.2 8.1a8 8 0 1 1-.8 7.1"></path><text x="8.2" y="15.6">10</text></svg>
+        </button>
+
+        <button class="player-control player-icon-control player-skip-control" id="playerForward" aria-label="Forward 10 seconds" data-tooltip="Forward 10 seconds">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.8 8.2h3.4V4.8"></path><path d="M18.8 8.1a8 8 0 1 0 .8 7.1"></path><text x="8.2" y="15.6">10</text></svg>
+        </button>
+
+        <button class="player-control player-icon-control" id="playerMute" aria-label="Mute" data-tooltip="Volume">
+          <svg class="player-volume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10Z"></path><path d="M16 9c1.4 1.7 1.4 4.3 0 6"></path><path d="M18.5 6.5c3 3 3 8 0 11"></path></svg>
+        </button>
+
+        <span class="player-time" id="playerTime">0:00 / 0:00</span>
+      </div>
+
+      <span class="player-spacer"></span>
+
+      <div class="player-control-cluster player-control-right">
+        <div class="player-menu">
+          <button class="player-control player-icon-control" id="playerTracks" aria-label="Audio and subtitles" data-tooltip="Audio & Subtitles">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="14" rx="2"></rect><path d="M7 10h4M7 14h7M16 10h1"></path></svg>
+          </button>
+          <div class="player-popover" id="playerTracksMenu">
+            <button data-track="Japanese audio">Japanese audio</button>
+            <button data-track="English audio">English audio</button>
+            <button data-track="English subtitles">English subtitles</button>
+            <button data-track="Subtitles off">Subtitles off</button>
+          </div>
+        </div>
+
+        <button class="player-control player-icon-control" id="playerPrevious" aria-label="Previous" data-tooltip="Previous">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6v12M18 6 9 12l9 6Z"></path></svg>
+        </button>
+        <button class="player-control player-icon-control" id="playerNext" aria-label="Next episode" data-tooltip="Next episode">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6v12M6 6l9 6-9 6Z"></path></svg>
+        </button>
+        <button class="player-control player-icon-control" id="playerFullscreen" aria-label="Fullscreen" data-tooltip="Full screen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4H4v4M16 4h4v4M8 20H4v-4M16 20h4v-4"></path></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="player-error">
+    <strong>Playback unavailable</strong>
+    <small id="playerErrorText">The local file could not be opened in this browser prototype.</small>
+    <button id="playerRetry">Try again</button>
+  </div>
+</section>
+<section class="search-overlay" id="searchOverlay" aria-label="Search">
+  <div class="search-ambient"></div>
+  <div class="search-shell">
+    <div class="search-eyebrow">HED Space · Universal search</div>
+
+    <div class="search-top">
+      <label class="search-field" for="searchInput">
+        <svg class="search-field-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.7" cy="10.7" r="5.5"></circle><path d="m15 15 4.7 4.7"></path></svg>
+        <input class="search-input" id="searchInput" type="text" placeholder="What do you want to find?" autocomplete="off" spellcheck="false">
+        <span class="search-key">ESC</span>
+      </label>
+      <button class="search-close" id="searchClose" aria-label="Close search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m7 7 10 10M17 7 7 17"></path></svg>
+      </button>
+    </div>
+
+    <div class="search-hint">Movies, series, anime, episodes, songs and atmospheres — all in one place.</div>
+
+    <div class="search-chips" aria-label="Search suggestions">
+      <button type="button" data-search-chip="Dune">Dune</button>
+      <button type="button" data-search-chip="Attack on Titan">Attack on Titan</button>
+      <button type="button" data-search-chip="Hunter">Hunter × Hunter</button>
+      <button type="button" data-search-chip="Childhood">Childhood</button>
+      <button type="button" data-search-chip="Soundtrack">Soundtracks</button>
+    </div>
+
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</section>
+<section class="details" id="details" aria-label="Media details"><div class="details-backdrop" id="detailsBackdrop"></div><button class="details-close" id="closeDetails" aria-label="Close details">×</button><div class="details-card"><img class="details-poster" id="detailsPoster" alt=""><div class="details-copy"><div class="details-kicker" id="detailsKicker">Private Cinema</div><h2 id="detailsTitle"></h2><div class="details-meta" id="detailsMeta"></div><p class="details-description" id="detailsDescription"></p><div class="details-actions"><button class="details-play" id="detailsPlay">▶&nbsp; Play</button><button class="secondary" id="detailsDismiss">Close</button></div></div></div></section>
+<div class="toast" id="toast"></div>
+<script>
+const A='../../assets/';
+const previewRoot=A+'previews/';
+const posterRoot=A+'posters/';
+const descriptions={'Dune':'On Arrakis, Paul Atreides is drawn into a desert war that will decide the future of humanity.','Dune: Part Two':'Paul unites with Chani and the Fremen while choosing between love, prophecy, and revenge.','The Dark Knight':'Batman faces a criminal force that turns Gotham’s rules, loyalties, and fear against itself.','The Fellowship of the Ring':'A reluctant fellowship carries an ancient evil toward the only place where it can be destroyed.','The Two Towers':'As Middle-earth fractures under war, the scattered fellowship fights to keep hope alive.','The Return of the King':'The final stand for Middle-earth begins while Frodo and Sam approach the end of their impossible journey.','Interstellar':'A group of explorers crosses a collapsing frontier of space to search for a future for humanity.','Attack on Titan':'Behind the walls, a generation of soldiers discovers that survival has a human face—and a terrible cost.','Hunter × Hunter':'Gon leaves Whale Island to become a Hunter, finding rivals, friends, and a world much larger than he imagined.','The Name':'Gumball, Darwin, and their family turn an ordinary day into another beautifully chaotic adventure.','Shaun the Fugitive':'Shaun’s latest escape turns the farm into a quiet, hilarious chain of escalating trouble.','Angelo’s Blunder':'Angelo tries to outsmart school, friends, and bad luck in one more impossible plan.'};
+const previewByTitle={'Dune':'dune.mp4','Dune: Part Two':'dune-part-two.mp4','Interstellar':'interstellar.mp4','The Fellowship of the Ring':'fellowship.mp4','The Two Towers':'two-towers.mp4','The Return of the King':'return-king.mp4','Harry Potter and the Sorcerer’s Stone':'harry-sorcerers-stone.mp4','Avengers: Infinity War':'avengers-infinity-war.mp4','Avengers: Endgame':'avengers-endgame.mp4','Spider-Man: No Way Home':'spider-man-no-way-home.mp4','Spider-Man: Far From Home':'spider-man-far-from-home.mp4','The Amazing Spider-Man':'amazing-spider-man.mp4','The Dark Knight':'dark-knight.mp4','John Wick':'john-wick.mp4','John Wick: Chapter 2':'john-wick-2.mp4','John Wick: Chapter 4':'john-wick-4.mp4','Hobbs & Shaw':'hobbs-shaw.mp4','22 Jump Street':'22-jump-street.mp4','To You, in 2000 Years':'attack-on-titan.mp4','Rivals × for × Survival':'hunter-x-hunter.mp4','The Name':'gumball.mp4','Shaun the Fugitive':'shaun.mp4','Angelo’s Blunder':'angelo.mp4'};
+const posterMap={'Dune':'dune.jpg','Dune: Part Two':'dune-2.jpg','Interstellar':'interstellar.jpg','The Fellowship of the Ring':'the-lord-of-the-rings-the-fellowship-of-the-ring.jpg','The Two Towers':'two-towers.jpg','The Return of the King':'the-lord-of-the-rings-the-return-of-the-king.jpg','Harry Potter and the Sorcerer’s Stone':'harry-potter-and-the-sorcerer-s-stone.jpg','The Dark Knight':'the-dark-knight.jpg','Avengers: Infinity War':'avengers-infinity-war-2018.jpg','Avengers: Endgame':'avengers-endgame.jpg','Spider-Man: No Way Home':'spider-man-no-way-home.jpg','Spider-Man: Far From Home':'spider-man-far-from-home.jpg','The Amazing Spider-Man':'the-amazing-spiderman.jpg','John Wick':'john-wick-2014.jpg','John Wick: Chapter 2':'john-wick-chapter-2.jpg','John Wick: Chapter 4':'john-wick-chapter-4.jpg','Hobbs & Shaw':'fast-furioushs.jpg','22 Jump Street':'22-jump-street.jpg','Attack on Titan':'attack-on-titans.jpg','To You, in 2000 Years':'attack-on-titans.jpg','That Day':'attack-on-titans.jpg','A Dim Light Amid Despair':'attack-on-titans.jpg','Hunter × Hunter':'hunter-x-hunter.jpg','Departure × and × Friends':'hunter-x-hunter.jpg','Rivals × for × Survival':'hunter-x-hunter.jpg','The Amazing World of Gumball':'the-amazing-world-of-gumball.jpg','The Name':'the-amazing-world-of-gumball.jpg','Shaun the Fugitive':'shaun-the-sheep.jpg','Shaun the Sheep':'shaun-the-sheep.jpg','Angelo’s Blunder':'angelo-rules.jpg','Angelo Rules':'angelo-rules.jpg','One Piece · Season 2':'one-piece-s2.jpg'};
+const seriesData={
+ 'Attack on Titan':{poster:'attack-on-titans.jpg',meta:'111 local files · 4 seasons · Japanese audio · English subtitles',intro:'Choose a season, then enter an episode. Your Japanese-audio and English-subtitle preference stays visible as part of the collection.',seasons:[{name:'Season 1',count:25,items:[]},{name:'Season 2',count:12,items:[]},{name:'Season 3',count:22,items:[]},{name:'Final Season',count:28,items:[]}]},
+ 'Hunter × Hunter':{poster:'hunter-x-hunter.jpg',meta:'148 episodes · Japanese audio · English subtitles',intro:'Follow Gon’s journey episode by episode. The prototype shows the first Hunter Exam entries while the full local catalog remains available for the production scanner.',seasons:[{name:'Hunter Exam',count:26,items:[]},{name:'Heavens Arena',count:27,items:[]},{name:'Yorknew City',count:22,items:[]}]},
+ 'One Piece · Season 2':{poster:'one-piece-s2.jpg',meta:'8 local episodes · English audio and subtitles',intro:'A compact season collection with direct episode access.',seasons:[{name:'Season 2',count:8,items:[]}]}
+};
+const heroes={
+ home:{cls:'home',image:A+'final_current_additions/film_dune_part_two_hero.jpg',eyebrow:'Welcome back, Houssam',title:'Your space<br>Tonight',meta:['Continue','Listen','Rest'],description:'Everything you love, brought together without turning your collection into a file browser.'},
+ watch:{cls:'watch',image:A+'backdrops/Avengers.Infinity.War__hero.jpg',eyebrow:'Private Cinema · Watch',title:'Every story<br>Line by line',meta:['Movies','Series','Anime'],description:'Collections continue down the page—from action and heroes to individual episodes, childhood, franchises, and worlds worth returning to.'},
+ listen:{cls:'listen',image:A+'final_current_additions/music_new_1_wide.jpg',eyebrow:'Your local sound',title:'Your rotation<br>Still yours',meta:['Local audio','85 tracks','Offline'],description:'Albums, soundtrack memories, Moroccan rap, instrumentals, and songs extracted from your own sources.'},
+ library:{cls:'library',image:A+'final_current_additions/aot_series_hero.jpg',eyebrow:'Your complete library',title:'Everything<br>Findable',meta:['Multi-drive','Read only','Offline'],description:'Browse the complete catalog by type, series, franchise, progress, language, availability, and location.'}
+};
+const c=(title,img,meta,tag='HED Space',progress=0,frame={})=>({title,img:A+img,meta,tag,progress,zoom:frame.zoom||1.04,position:frame.position||'50% 50%'});
+const aot=[
+ c('To You, in 2000 Years','aot_episode_stills_current/E001.jpg','S1 E1 · Japanese · English CC','Attack on Titan'),c('That Day','aot_episode_stills_current/E002.jpg','S1 E2 · 24 min','Attack on Titan'),c('A Dim Light Amid Despair','aot_episode_stills_current/E003.jpg','S1 E3 · 24 min','Attack on Titan'),c('The Night of the Closing Ceremony','aot_episode_stills_current/E004.jpg','S1 E4 · 24 min','Attack on Titan'),c('First Battle','aot_episode_stills_current/E005.jpg','S1 E5 · 24 min','Attack on Titan'),c('The World the Girl Saw','aot_episode_stills_current/E006.jpg','S1 E6 · 24 min','Attack on Titan'),c('Small Blade','aot_episode_stills_current/E007.jpg','S1 E7 · 24 min','Attack on Titan'),c('I Can Hear His Heartbeat','aot_episode_stills_current/E008.jpg','S1 E8 · 24 min','Attack on Titan')
+];
+const hxh=[
+ c('Departure × and × Friends','episodes/hunter_x_hunter_2011/E001_Departure_and_Friends.jpg','Episode 1 · Hunter Exam','Hunter × Hunter'),c('Test × of × Tests','episodes/hunter_x_hunter_2011/E002_Test_of_Tests.jpg','Episode 2 · Hunter Exam','Hunter × Hunter'),c('Rivals × for × Survival','episodes/hunter_x_hunter_2011/E003_Rivals_for_Survival.jpg','Episode 3 · Hunter Exam','Hunter × Hunter'),c('Hope × and × Ambition','episodes/hunter_x_hunter_2011/E004_Hope_and_Ambition.jpg','Episode 4 · Hunter Exam','Hunter × Hunter'),c('Hisoka × is × Sneaky','episodes/hunter_x_hunter_2011/E005_Hisoka_is_Sneaky.jpg','Episode 5 · Hunter Exam','Hunter × Hunter'),c('A × Surprising × Challenge','episodes/hunter_x_hunter_2011/E006_A_Surprising_Challenge.jpg','Episode 6 · Hunter Exam','Hunter × Hunter'),c('Showdown × on × the Airship','episodes/hunter_x_hunter_2011/E007_Showdown_on_the_Airship.jpg','Episode 7 · Hunter Exam','Hunter × Hunter'),c('Decision × By × Majority?','episodes/hunter_x_hunter_2011/E008_Decision_By_Majority.jpg','Episode 8 · Hunter Exam','Hunter × Hunter')
+];
+const action=[c('Avengers: Infinity War','backdrops/Avengers.Infinity.War__hero.jpg','2018 · 4K','Action'),c('Avengers: Endgame','backdrops/Avengers_-_Endgame__hero.jpg','2019 · 4K','Action',0,{zoom:1.07}),c('John Wick','backdrops/John.Wick.2014.PROPER__hero.jpg','2014','Action',0,{zoom:1.52,position:'65% 58%'}),c('John Wick: Chapter 2','backdrops/John.Wick.Chapter.2__hero.jpg','2017','Action',0,{zoom:1.58,position:'62% 51%'}),c('John Wick: Chapter 4','backdrops/John.Wick.Chapter.4__hero.jpg','2023 · 4K','Action',0,{zoom:1.10,position:'66% 51%'}),c('Hobbs & Shaw','backdrops/Fast._.Furious.Presents.Hobbs._.Shaw.2019__hero.jpg','2019','Action'),c('22 Jump Street','backdrops/22_Jump_Street_2014__hero.jpg','2014','Action')];
+const heroesRow=[c('Avengers: Infinity War','backdrops/Avengers.Infinity.War__hero.jpg','Marvel','Superheroes'),c('Avengers: Endgame','backdrops/Avengers_-_Endgame__hero.jpg','Marvel','Superheroes'),c('Spider-Man: No Way Home','backdrops/Spider-Man_-_No_Way_Home_2021__hero.jpg','Marvel','Superheroes'),c('Spider-Man: Far From Home','backdrops/Spider-man_-_Far_From_Home_2019__hero.jpg','Marvel','Superheroes'),c('The Amazing Spider-Man','backdrops/The_Amazing_Spider-Man_2012__hero.jpg','Marvel','Superheroes'),c('The Dark Knight','backdrops/The.Dark.Knight__hero.jpg','DC','Superheroes',0,{position:'62% 28%',zoom:2.85})];
+const childhood=[c('The Name','final_current_additions/gumball_new_1.jpg','Gumball · Episode','Childhood'),c('The Extras','final_current_additions/gumball_new_2.jpg','Gumball · Episode','Childhood'),c('The Grieving','final_current_additions/gumball_new_3.jpg','Gumball · Episode','Childhood'),c('The Routine','final_current_additions/gumball_new_4.jpg','Gumball · Episode','Childhood'),c('The Scam','final_current_additions/gumball_new_5.jpg','Gumball · Episode','Childhood'),c('Shaun the Fugitive','episodes/shaun_the_sheep_s03/LocalChapter07_S03E06_Shaun_The_Fugitive.jpg','Shaun · S3 E6','Childhood'),c('Angelo’s Blunder','episodes/angelo_rules_segments/File023_S01E27_Angelo_s_Blunder.jpg','Angelo Rules · S1 E27','Childhood')];
+const epics=[c('Dune','final_current_additions/film_dune_2021_hero.jpg','2021 · 4K HDR','Epic worlds',0,{position:'52% 28%',zoom:2.35}),c('Dune: Part Two','final_current_additions/film_dune_part_two_hero.jpg','2024 · 4K HDR','Epic worlds',0,{position:'58% 32%',zoom:2.05}),c('Interstellar','backdrops/Interstellar__hero.jpg','2014','Sci-Fi',0,{position:'50% 28%',zoom:1.75}),c('The Fellowship of the Ring','backdrops/The_Lord_of_the_Rings_1_The_Fellowship_of_the_Ring_Extended__hero.jpg','Extended','Middle-earth',0,{position:'50% 38%',zoom:1.35}),c('The Two Towers','backdrops/The.Lord.of.the.Rings.The.Two.Towers__hero.jpg','Extended','Middle-earth',0,{position:'48% 42%',zoom:1.45}),c('The Return of the King','backdrops/The.Lord.of.the.Rings.The.Return.of.the.King.2003__hero.jpg','Extended','Middle-earth',0,{position:'50% 38%',zoom:1.45}),c('Harry Potter and the Sorcerer’s Stone','backdrops/Harry.Potter.and.the.Sorcerers.Stone.2001.Theatrical__hero.jpg','Wizarding World','Fantasy',0,{position:'72% 35%',zoom:1.40})];
+const animeWorlds=[c('Attack on Titan','final_current_additions/aot_series_hero.jpg','111 local files','Anime worlds'),c('Season 1','final_current_additions/aot_season_1.jpg','25 episodes','Attack on Titan'),c('Season 2','final_current_additions/aot_season_2.jpg','12 episodes','Attack on Titan'),c('Season 3','final_current_additions/aot_season_3.jpg','22 episodes','Attack on Titan'),c('The Final Season','final_current_additions/aot_final_season.jpg','28 episodes','Attack on Titan'),c('Final Chapters','final_current_additions/aot_final_chapters.jpg','2 specials','Attack on Titan'),c('Hunter × Hunter','posters/imdb/Hunter_X_Hunter_tt2098220.jpg','148 episodes','Anime worlds')];
+const music=[c('PER LA VITA','music_covers/local_square/001_-_STORMY_-_PER_LA_VITA.jpg','STORMY','Houssam’s rotation'),c('SPIDER','music_covers/local_square/002_-_GIMS_DYSTINCT_-_SPIDER_Clip_officiel.jpg','GIMS × DYSTINCT','Rotation'),c('SO HIGH','music_covers/local_square/003_-_STORMY_-_SO_HIGH_MUSIC_VISUALISER.jpg','STORMY','Rotation'),c('KILOWAT','music_covers/local_square/004_-_STORMY_-_KILOWAT_VISUALIZER.jpg','STORMY','Rotation'),c('CAMEMBERT','music_covers/local_square/005_-_STORMY_The_tif_-_CAMEMBERT_VISUALIZER.jpg','STORMY × The Tif','Rotation'),c('Sac','music_covers/local_square/006_-_DRAGANOV_-_Sac_Official_Music_Video_Prod_by_DRAGANOV_NEYL.jpg','DRAGANOV','Rotation'),c('BADI 7EFYAN','music_covers/local_square/007_-_STORMY_-_BADI_7EFYAN_Official_Music_Video.jpg','STORMY','Rotation')];
+const soundtrack=[c('Swimming','music_covers/local_square/001_-_Flawed_Mangoes_-_Swimming_Slowed_Reverb.jpg','Flawed Mangoes','Soundtrack'),c('Glorious Morning','music_covers/local_square/002_-_Glorious_Morning.jpg','Instrumental','Soundtrack'),c('GTA IV Theme','music_covers/local_square/003_-_GTA_IV_Loading_Screen_Theme_Song.jpg','Loading theme','Soundtrack'),c('Golden Brown','music_covers/local_square/004_-_Golden_Brown_-_The_Stranglers_slowed_reverb.jpg','Slowed','Soundtrack'),c('Duvet','music_covers/local_square/005_-_Duvet_-_Boa_-_best_part_loop.jpg','bôa','Soundtrack'),c('Ladyfingers','music_covers/local_square/008_-_Herb_Alpert_-_Ladyfingers_slow_n_reverb.jpg','Herb Alpert','Soundtrack'),c('Aruarian Dance','music_covers/local_square/011_-_Nujabes_-_Aruarian_Dance_Samurai_Champloo_OST_._Track_03.jpg','Nujabes','Soundtrack')];
+const libraryCatalog={movies:[],series:[],anime:[],childhood:[],music:[]};
+const posterRows={
+  music:[c('Spacetoon memories','posters/attack-on-titans.jpg','53 local songs','Spacetoon'),c('PER LA VITA','music_covers/local_square/001_-_STORMY_-_PER_LA_VITA.jpg','STORMY','Houssam’s rotation'),c('SPIDER','music_covers/local_square/002_-_GIMS_DYSTINCT_-_SPIDER_Clip_officiel.jpg','GIMS × DYSTINCT','Rotation'),c('SO HIGH','music_covers/local_square/003_-_STORMY_-_SO_HIGH_MUSIC_VISUALISER.jpg','STORMY','Rotation')],
+  anime:[c('Attack on Titan','posters/attack-on-titans.jpg','111 local files','Anime worlds'),c('Hunter × Hunter','posters/hunter-x-hunter.jpg','148 episodes','Anime worlds'),c('One Piece · Season 2','posters/one-piece-s2.jpg','8 episodes','Anime worlds')],
+  childhood:[c('The Amazing World of Gumball','posters/the-amazing-world-of-gumball.jpg','Local episodes','Childhood'),c('Shaun the Sheep','posters/shaun-the-sheep.jpg','Season 3 compilation','Childhood'),c('Angelo Rules','posters/angelo-rules.jpg','Season 1 collection','Childhood')]
+};
+const rows={
+ watch:[{title:'Continue watching',subtitle:'Pick up where you left off',cards:[{...aot[0],progress:62},{...hxh[2],progress:38},{...epics[1],progress:18},{...childhood[2],progress:71},action[2]]},{title:'Action',subtitle:'Momentum, missions, and impossible odds',cards:action},{title:'Superheroes',subtitle:'Marvel, DC, and multiverse nights',cards:heroesRow},{title:'Attack on Titan · Season 1',subtitle:'Episodes, not just one series tile',cards:aot},{title:'Hunter × Hunter · Hunter Exam',subtitle:'Individual episodes from your 148-episode collection',cards:hxh},{title:'Anime worlds',subtitle:'Seasons, specials, OADs, and complete journeys',cards:animeWorlds},{title:'Childhood favorites',subtitle:'Gumball, Shaun, and Angelo',cards:childhood},{title:'Sci-Fi, fantasy, and epic worlds',subtitle:'Large stories for the private cinema',cards:epics}],
+ home:[{title:'Continue your journey',subtitle:'Across Watch and Listen',cards:[{...aot[0],progress:62},{...hxh[2],progress:38},{...epics[1],progress:18},{...music[0],progress:45},{...childhood[2],progress:71}]},{title:'Tonight in Watch',subtitle:'Selected from your library',cards:[...action.slice(0,4),...epics.slice(0,3)]},{title:'Episodes waiting for you',subtitle:'Anime and childhood',cards:[...aot.slice(0,4),...hxh.slice(0,4)]},{title:'Sound for now',subtitle:'Your local rotation',cards:music}],
+ listen:[{title:'Recently in your ears',subtitle:'Continue your rotation',cards:music},{title:'Spacetoon memories',subtitle:'53 songs from the worlds of childhood',cards:posterRows.music},{title:'Houssam’s rotation',subtitle:'Moroccan rap and current favorites',cards:[...music].reverse()},{title:'Soundtrack memories',subtitle:'Games, anime, and familiar worlds',cards:soundtrack},{title:'Late-night instrumentals',subtitle:'Quiet focus and after-hours rooms',cards:soundtrack.slice().reverse()}],
+ library:[{title:'Recently added',subtitle:'Across every connected root',cards:[...epics.slice(0,3),...animeWorlds.slice(0,3)]},{title:'Movies',subtitle:'Action, heroes, franchises, and worlds',cards:[...action,...heroesRow]},{title:'Series and anime',subtitle:'Episode-level access',cards:[...aot,...hxh]},{title:'Anime collections',subtitle:'Complete local journeys',cards:posterRows.anime},{title:'Childhood',subtitle:'Shows and individual episodes',cards:[...posterRows.childhood,...childhood]},{title:'Songs and soundtracks',subtitle:'Local audio collection',cards:[...music,...soundtrack]}]
+};
+const roomData=[
+ {id:'storm',title:'Let the storm pass',src:'media/storm-shelter-preview.mp4',poster:A+'final_current_additions/atmosphere_this_storm_hero.jpg',thumb:A+'local_thumbnails/Tube/Tube__Rest..._Let_the_storm_pass.jpg',meta:'Rain shelter · 30-minute source'},
+ {id:'traveler',title:'Rest, traveler',src:'media/traveler-preview.mp4',poster:A+'current_ambient_middle_candidates/A1_3.jpg',thumb:A+'local_thumbnails/Tube/Tube__Rest_traveler.._You_deserve_it.jpg',meta:'Beach campfire · 30-minute source'},
+ {id:'campfire',title:'This storm too shall pass',src:'media/storm-campfire-preview.mp4',poster:A+'current_ambient_middle_candidates/A3_3.jpg',thumb:A+'final_current_additions/atmosphere_this_storm_square.jpg',meta:'Storm campfire · 30-minute source'},
+ {id:'jazz',title:'Just One More Drink',src:'media/jazz-noir-preview.mp4',poster:A+'local_thumbnails/Tube/Tube__Just_One_More_Drink_--_Jazz_Noir.jpg',thumb:A+'local_thumbnails/Tube/Tube__Just_One_More_Drink_--_Jazz_Noir.jpg',meta:'Jazz Noir · full room'}
+];
+const homeTiles=[
+  {cls:'feature',display:'Dune: Part Two',target:'Dune: Part Two',kicker:'Continue · 38%',img:epics[1].img,kind:'media',zoom:1.03,pos:'48% 35%'},
+  {cls:'aot',display:'Attack on Titan',target:'Attack on Titan',kicker:'Final season',img:A+'final_current_additions/aot_series_hero.jpg',kind:'series',zoom:1.02,pos:'50% 48%'},
+  {cls:'music',display:'PER LA VITA',target:'PER LA VITA',kicker:'STORMY',img:music[0].img,kind:'media',zoom:1.01,pos:'50% 47%'},
+  {cls:'gumball',display:'Gumball & friends',target:'The Name',kicker:'Watch · Childhood',img:childhood[0].img,kind:'media',zoom:1.02,pos:'50% 42%'},
+  {cls:'storm',display:'Let the storm pass',target:'Let the storm pass',kicker:'Original ambience',img:roomData[0].poster,kind:'atmosphere',room:'storm',zoom:1.01,pos:'50% 48%'},
+  {cls:'hunter',display:'A Shocking Tragedy',target:'Hunter × Hunter',kicker:'Yorknew City',img:hxh[2].img,kind:'series',zoom:1.02,pos:'50% 42%'},
+  {cls:'jazz',display:'Just one more drink',target:'Just One More Drink',kicker:'After midnight',img:roomData[3].poster,kind:'atmosphere',room:'jazz',zoom:1.01,pos:'50% 50%'},
+  {cls:'shaun',display:'The Rounders Match',target:'Shaun the Fugitive',kicker:'Season 3',img:childhood[5].img,kind:'media',zoom:1.02,pos:'50% 48%'},
+  {cls:'interstellar',display:'Interstellar',target:'Interstellar',kicker:'Return to the stars',img:epics[2].img,kind:'media',zoom:1.02,pos:'50% 37%'},
+  {cls:'late',display:'Ladyfingers',target:'Ladyfingers',kicker:'Late-night instrumental',img:soundtrack[5].img,kind:'media',zoom:1.01,pos:'50% 50%'}
+];
+function renderHome(){const root=document.querySelector('#homeMosaic');if(!root)return;root.innerHTML=homeTiles.map((tile,i)=>`<button class="home-card home-card-${tile.cls}" data-home-index="${i}" style="--home-zoom:${tile.zoom||1.01};--home-pos:${tile.pos||'50% 50%'}"><img src="${tile.img}" alt=""><span class="home-card-copy"><small class="home-card-kicker">${tile.kicker}</small><strong class="home-card-title">${tile.display}</strong></span></button>`).join('');root.querySelectorAll('.home-card').forEach(card=>card.onclick=()=>{const tile=homeTiles[Number(card.dataset.homeIndex)];if(tile.kind==='atmosphere'){selectRoom(tile.room);setActiveNav('atmospheres');navigate('atmospheres');return}if(tile.kind==='series'&&seriesData[tile.target]){openSeries(tile.target,card);return}const source=[...action,...heroesRow,...epics,...childhood,...music,...soundtrack,...aot,...hxh].find(x=>x.title===tile.target);const img=source?.img||tile.img;const poster=source?posterFor(source):'';openDetails(tile.target,img,poster,{querySelector:s=>s==='small'?{textContent:tile.kicker}:s==='.card-tag'?{textContent:'Home'}:null})})}
+const $=s=>document.querySelector(s),app=$('#app'),feed=$('#feed'),heroBg=$('#heroBg'),heroTitle=$('#heroTitle'),heroMeta=$('#heroMeta'),heroDescription=$('#heroDescription'),eyebrow=$('#eyebrow'),transition=$('#transition'),atmosVideo=$('#atmosVideo'),soundtrackAudio=$('#soundtrackAudio');let currentSection='watch',currentRoom='storm',currentSound='Original atmosphere',motionLevel='full';
+function flash(text){const t=$('#toast');t.textContent=text;t.classList.add('show');clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.classList.remove('show'),1500)}
+function posterFor(card){return posterMap[card.title]?posterRoot+posterMap[card.title]:''}function cardHTML(card){const zoom=card.zoom||1.04,hover=zoom+.045,poster=posterFor(card)||card.img;return `<button class="media-card" style="--zoom:${zoom};--hover-zoom:${hover};--position:${card.position||'50% 50%'}" data-title="${card.title.replaceAll('"','&quot;')}" data-img="${card.img}" data-poster="${poster}"><img src="${card.img}" alt=""><span class="card-tag">${card.tag}</span><span class="card-copy"><strong>${card.title}</strong><small>${card.meta}</small></span>${card.progress?`<span class="progress" style="width:${card.progress}%"></span>`:''}</button>`}
+function centerRails(){feed.querySelectorAll('.rail').forEach(rail=>{rail.classList.remove('centered');rail.scrollLeft=0})}
+function renderFeed(section){feed.innerHTML=(rows[section]||[]).map((row,i)=>`<section class="content-row"><div class="row-head"><div class="row-title"><h2>${row.title}</h2><span>${row.subtitle}</span></div><div class="row-controls"><button data-scroll="-1" data-row="${i}" aria-label="Previous">‹</button><button data-scroll="1" data-row="${i}" aria-label="Next">›</button></div></div><div class="rail" data-rail="${i}">${row.cards.map(cardHTML).join('')}</div></section>`).join('');feed.querySelectorAll('.media-card').forEach(card=>card.onclick=()=>{if(seriesData[card.dataset.title])openSeries(card.dataset.title,card);else openDetails(card.dataset.title,card.dataset.img,card.dataset.poster,card)});feed.querySelectorAll('[data-scroll]').forEach(btn=>btn.onclick=()=>feed.querySelector(`[data-rail="${btn.dataset.row}"]`).scrollBy({left:Number(btn.dataset.scroll)*720,behavior:motionLevel==='off'?'auto':'smooth'}));requestAnimationFrame(centerRails)}
+
+const listenPreviewByTitle={
+  'PER LA VITA':'media/per-la-vita-preview.m4a',
+  'Spacetoon memories':'media/spacetoon-memory-preview.m4a',
+  'Ladyfingers':'media/late-night-preview.m4a'
+};
+const listenAudio=new Audio();
+const listenPlayIcon='<svg class="play-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.8 6.5 L18.8 12 L8.8 17.5 Z"></path></svg>';
+const listenPauseIcon='<svg class="pause-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7.4" y="6" width="3.4" height="12"></rect><rect x="13.2" y="6" width="3.4" height="12"></rect></svg>';
+function setListenPlayButtonState(playing){
+  const btn=$('#listenPlayPause');
+  if(!btn)return;
+  btn.innerHTML=playing?listenPauseIcon:listenPlayIcon;
+  btn.setAttribute('aria-label',playing?'Pause':'Play');
+}
+let listenCurrentIndex=0;
+let listenIsPlaying=false;
+
+function listenArtist(card){
+  return card.meta || card.tag || 'HED Space';
+}
+function listenAlbumHTML(card){
+  const art=card.img;
+  return `<button class="listen-album" data-listen-title="${card.title.replaceAll('"','&quot;')}"><span class="listen-album-art"><img src="${art}" alt=""><span class="listen-album-play"><svg class="play-icon-listen" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.3 4.6 L15 10 L6.3 15.4 Z"></path></svg></span></span><strong>${card.title}</strong><small>${listenArtist(card)}</small></button>`;
+}
+function listenQuickHTML(card){
+  return `<button class="listen-quick-card" data-listen-title="${card.title.replaceAll('"','&quot;')}"><img src="${card.img}" alt=""><span class="listen-quick-copy"><strong>${card.title}</strong><small>${listenArtist(card)}</small></span><span class="listen-quick-play"><svg class="play-icon-listen" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.3 4.6 L15 10 L6.3 15.4 Z"></path></svg></span></button>`;
+}
+function listenTrackHTML(card,i){
+  return `<button class="listen-track" data-listen-title="${card.title.replaceAll('"','&quot;')}"><span class="listen-track-index">${i+1}</span><img src="${card.img}" alt=""><span class="listen-track-main"><strong>${card.title}</strong><small>${listenArtist(card)}</small></span><span class="listen-track-album">${card.tag||'Local library'}</span><span class="listen-track-time">${['3:14','2:52','3:36','2:47','3:08','2:58','3:21','4:02'][i%8]}</span></button>`;
+}
+function allListenTracks(){
+  return [...music,...soundtrack];
+}
+function setListenNow(title,autoPlay=false){
+  const tracks=allListenTracks();
+  const index=Math.max(0,tracks.findIndex(x=>x.title===title));
+  const card=tracks[index]||tracks[0];
+  listenCurrentIndex=index;
+  $('#listenNowTitle').textContent=card.title;
+  $('#listenNowArtist').textContent=listenArtist(card);
+  $('#listenNowArt').src=card.img;
+  document.querySelectorAll('[data-listen-title]').forEach(el=>el.classList.toggle('is-current',el.dataset.listenTitle===card.title));
+  const src=listenPreviewByTitle[card.title];
+  if(src){
+    if(!listenAudio.src.endsWith(src)){listenAudio.src=src;listenAudio.load()}
+    if(autoPlay){
+      listenAudio.play().then(()=>{listenIsPlaying=true;setListenPlayButtonState(true)}).catch(()=>{});
+    }
+  }else{
+    listenAudio.pause();
+    listenAudio.removeAttribute('src');
+    listenIsPlaying=false;
+    setListenPlayButtonState(false);
+  }
+}
+function renderListen(){
+  const tracks=allListenTracks();
+  const quick=[music[0],music[1],soundtrack[4],soundtrack[5],music[2],soundtrack[6]].filter(Boolean);
+  $('#listenQuick').innerHTML=quick.map(listenQuickHTML).join('');
+  $('#listenRecent').innerHTML=music.slice(0,6).map(listenAlbumHTML).join('');
+  $('#listenMixes').innerHTML=[...soundtrack.slice(0,4),...music.slice(3,5)].map(listenAlbumHTML).join('');
+  $('#listenTrackList').innerHTML=tracks.map(listenTrackHTML).join('');
+  document.querySelectorAll('[data-listen-title]').forEach(el=>el.onclick=()=>setListenNow(el.dataset.listenTitle,true));
+  setListenNow(tracks[listenCurrentIndex]?.title||tracks[0]?.title||'PER LA VITA',false);
+}
+
+function setTheme(section){const theme={home:['#ed2338','237,35,56'],watch:['#ed2338','237,35,56'],listen:['#23cf72','35,207,114'],library:['#bbb7b2','187,183,178'],atmospheres:['#69adff','105,173,255']}[section];document.documentElement.style.setProperty('--accent',theme[0]);document.documentElement.style.setProperty('--accent-rgb',theme[1])}
+function renderStandard(section){const h=heroes[section];setTheme(section);app.className='app '+h.cls;app.dataset.section=section;currentSection=section;document.body.classList.remove('immersive');heroBg.style.backgroundImage=`url("${h.image}")`;eyebrow.textContent=h.eyebrow;heroTitle.innerHTML=h.title;heroMeta.innerHTML=h.meta.map(x=>`<span>${x}</span>`).join('');heroDescription.textContent=h.description;$('#heroPlay').innerHTML=section==='home'?'▶&nbsp; Continue watching':'▶&nbsp; Play';$('#heroInfo').textContent=section==='home'?'Explore':'About HED Space';if(section==='home'){feed.innerHTML='';renderHome()}else if(section==='listen'){feed.innerHTML='';renderListen()}else{renderFeed(section)}renderLibrary('all');atmosVideo.pause();soundtrackAudio.pause();if(section!=='listen'){listenAudio.pause();listenIsPlaying=false;setListenPlayButtonState(false)}window.scrollTo({top:0,behavior:'auto'})}
+function libraryTileHTML(card,type){const poster=posterFor(card)||card.img;const playIcon='<svg class="play-icon-library" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.8 L14.7 10 L6.5 15.2 Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"></path></svg>';return `<button class="poster-tile" data-library-title="${card.title.replaceAll('"','&quot;')}" data-title="${card.title.replaceAll('"','&quot;')}" data-img="${card.img}" data-poster="${poster}" data-library-type="${type}"><span class="poster-art"><img src="${poster}" alt="${card.title}"><span class="poster-badge">${card.tag}</span></span><span class="poster-tile-copy"><strong>${card.title}</strong><small>${card.meta}</small></span><span class="poster-play">${playIcon}</span></button>`}
+
+function libraryMusicTileHTML(card){
+  const art=card.img;
+  const kind=(card.tag||'Music').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  const playIcon='<svg class="play-icon-library" viewBox="0 0 20 20" aria-hidden="true"><path d="M6.5 4.8 L14.7 10 L6.5 15.2 Z" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linejoin="round"></path></svg>';
+  return `<button class="library-music-card" data-library-music-title="${card.title.replaceAll('"','&quot;')}"><span class="library-music-art"><img src="${art}" alt="${card.title}"><span class="library-music-kind">${kind}</span><span class="library-music-play">${playIcon}</span></span><span class="library-music-copy"><strong>${card.title}</strong><small>${card.meta||card.tag||'Local music'}</small></span></button>`;
+}
+function libraryGroupHTML(type,title){
+  const count=libraryCatalog[type].length;
+  if(type==='music'){
+    return `<section class="library-group library-music-group" data-library-group="${type}"><div class="library-group-head"><h2>${title}</h2></div><div class="library-music-grid">${libraryCatalog.music.map(libraryMusicTileHTML).join('')}</div><div class="library-music-note">Music opens in Listen with the same local collection.</div></section>`;
+  }
+  return `<section class="library-group" data-library-group="${type}"><div class="library-group-head"><h2>${title}</h2></div><div class="poster-grid">${libraryCatalog[type].map(card=>libraryTileHTML(card,type)).join('')}</div></section>`;
+}
+
+function renderLibrary(filter='all'){const media=[...(libraryCatalog.movies||[]),...(libraryCatalog.series||[])],childhood=libraryCatalog.childhood||[];const groups=[['media','Movies, Series & Anime',media],['childhood','Childhood',childhood]].filter(([type])=>filter==='all'||filter===type);$('#libraryGroups').innerHTML=groups.map(([type,title,items])=>`<section class="library-group"><div class="library-group-head"><h2>${title}</h2></div>${items.length?`<div class="poster-grid">${items.map(x=>libraryTileHTML(x,type)).join('')}</div>`:'<div class="hed-empty">Nothing here yet.</div>'}</section>`).join('');document.querySelectorAll('.poster-tile').forEach(card=>card.onclick=()=>{const title=card.dataset.libraryTitle;if(seriesData[title])openSeries(title,card);else openDetails(title,card.dataset.img,card.dataset.poster,card)});document.querySelectorAll('.poster-tile').forEach(card=>{const title=card.dataset.libraryTitle;const copy=card.querySelector('.poster-tile-copy strong');const meta=card.querySelector('.poster-tile-copy small');if(copy)copy.textContent=title;if(meta)meta.textContent=card.querySelector('.poster-badge')?.textContent||''})}
+function setActiveNav(section){document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.section===section))}
+const sweepConfig={home:{rgb:'237,35,56',title:'Home',kicker:'Return to your space',image:`url("${heroes.home.image}")`},watch:{rgb:'237,35,56',title:'Watch',kicker:'Open the private cinema',image:`url("${heroes.watch.image}")`},listen:{rgb:'35,207,114',title:'Listen',kicker:'Move with the sound',image:`url("${heroes.listen.image}")`},library:{rgb:'187,183,178',title:'Library',kicker:'Everything within reach',image:`url("${heroes.library.image}")`},atmospheres:{rgb:'105,173,255',title:'Atmospheres',kicker:'Slide into another room',image:`url("${roomData[0].poster}")`}};
+function applyAtmosphere(){setTheme('atmospheres');currentSection='atmospheres';app.className='app atmospheres';app.dataset.section='atmospheres';document.body.classList.add('immersive');window.scrollTo({top:0,behavior:'auto'});atmosVideo.play().catch(()=>{atmosVideo.muted=true;atmosVideo.play().catch(()=>{})})}
+function navigate(section){
+  if(section===currentSection)return;
+
+  // Audio is exclusive by section. Leaving Listen pauses music; leaving
+  // Atmospheres pauses both its native audio and its selected soundtrack.
+  if(section!=='listen'&&typeof window.hedPauseListenForNavigation==='function')window.hedPauseListenForNavigation();
+  if(section!=='atmospheres'&&typeof window.hedPauseAtmosphereForNavigation==='function')window.hedPauseAtmosphereForNavigation();
+
+  setActiveNav(section);
+  const cfg=sweepConfig[section];
+  transition.style.setProperty('--sweep-rgb',cfg.rgb);
+  transition.style.setProperty('--sweep-image',cfg.image);
+  $('#transitionTitle').textContent=cfg.title;
+  $('#transitionKicker').textContent=cfg.kicker;
+
+  // Atmospheres keeps its blue cinematic sweep, but unlike the other section
+  // transitions we NEVER put `section-moving` on the body. That class scales
+  // the main app and was the cause of the fixed Atmospheres video briefly
+  // rendering zoomed/cropped in WebView2.
+  if(section==='atmospheres'){
+    document.body.classList.remove('section-moving');
+    app.classList.remove('hed-atmos-fade');
+
+    const reduced=motionLevel!=='full'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduced){
+      applyAtmosphere();
+      return;
+    }
+
+    document.body.classList.add('atmos-transitioning');
+    transition.className='transition-layer run atmos-run';
+
+    // Switch to the real Atmospheres view only while the blue sweep fully
+    // covers the viewport. The Atmospheres video itself is never transformed.
+    const midpoint=635,total=1320;
+    setTimeout(()=>{
+      document.body.classList.remove('section-moving');
+      applyAtmosphere();
+    },midpoint);
+
+    setTimeout(()=>{
+      transition.className='transition-layer';
+      document.body.classList.remove('atmos-transitioning','section-moving');
+    },total);
+    return;
+  }
+
+  const reduced=motionLevel!=='full'||matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(reduced){
+    document.body.style.opacity='.72';
+    setTimeout(()=>{renderStandard(section);document.body.style.opacity='1'},motionLevel==='off'?0:120);
+    return
+  }
+  document.body.classList.add('section-moving');
+  transition.className='transition-layer run';
+  const midpoint=510,total=1080;
+  setTimeout(()=>renderStandard(section),midpoint);
+  setTimeout(()=>{transition.className='transition-layer';document.body.classList.remove('section-moving')},total)
+}
+document.querySelectorAll('.nav button').forEach(btn=>btn.onclick=()=>navigate(btn.dataset.section));document.querySelectorAll('.library-filter').forEach(btn=>btn.onclick=()=>{document.querySelectorAll('.library-filter').forEach(x=>x.classList.toggle('active',x===btn));renderLibrary(btn.dataset.libraryFilter)});
+let selectedMedia=null;let activePlayerSrc='';function formatTime(value){if(!Number.isFinite(value))return '0:00';const m=Math.floor(value/60),s=Math.floor(value%60).toString().padStart(2,'0');return `${m}:${s}`}const playerPlaySvg='<svg class="player-inline-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8 19 12 8.2 18.2Z"></path></svg>';
+const playerPauseSvg='<svg class="player-inline-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7.2" y="5.7" width="3.6" height="12.6" rx=".8"></rect><rect x="13.2" y="5.7" width="3.6" height="12.6" rx=".8"></rect></svg>';
+const playerCenterPlaySvg='<svg class="player-center-icon player-center-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.2 5.8 19 12 8.2 18.2Z"></path></svg>';
+function playerSetPlaying(playing){
+  const play=$('#playerPlayPause'),center=$('#playerCenterPlay');
+  play.innerHTML=playing?playerPauseSvg:playerPlaySvg;
+  play.setAttribute('aria-label',playing?'Pause':'Play');
+  center.innerHTML=playerCenterPlaySvg;
+  center.setAttribute('aria-label','Play');
+  $('#player').classList.toggle('playing',playing);
+  if(playing)schedulePlayerUiHide();else showPlayerUi(true);
+}
+let playerUiTimer=0;
+function showPlayerUi(keep=false){
+  const p=$('#player');
+  if(!p.classList.contains('open'))return;
+  p.classList.add('ui-visible');
+  p.classList.remove('cursor-hidden');
+  clearTimeout(playerUiTimer);
+  if(!keep&&p.classList.contains('playing'))schedulePlayerUiHide();
+}
+function schedulePlayerUiHide(){
+  clearTimeout(playerUiTimer);
+  if(!$('#player').classList.contains('playing'))return;
+  playerUiTimer=setTimeout(()=>{
+    if(document.querySelector('.player-popover.open'))return;
+    $('#player').classList.remove('ui-visible');
+    $('#player').classList.add('cursor-hidden');
+  },2300);
+}
+function playerFeedback(content){
+  const f=$('#playerFeedback');
+  if(!f)return;
+  f.textContent=content;
+  f.classList.remove('show');
+  void f.offsetWidth;
+  f.classList.add('show');
+}
+
+function playerOpenMenus(id){showPlayerUi(true);document.querySelectorAll('.player-popover').forEach(x=>x.classList.toggle('open',x.id===id&&!x.classList.contains('open')))}function openPlayer(title,img,src=previewByTitle[title]){$('#playerTitle').textContent=title;$('#playerBottomTitle').textContent=title;$('#playerBg').style.backgroundImage=`url("${img}")`;const video=$('#playerVideo');activePlayerSrc=src?previewRoot+src:'';video.pause();video.removeAttribute('src');video.load();$('#player').classList.remove('error');if(activePlayerSrc){video.src=activePlayerSrc;video.load();video.play().then(()=>playerSetPlaying(true)).catch(()=>playerSetPlaying(false));}else{playerSetPlaying(false)}$('#playerRange').value=0;$('#playerRange').style.setProperty('--player-progress','0%');updatePlayerMuteIcon();$('#player').classList.add('open','ui-visible');showPlayerUi(false)}$('#playerVideo').addEventListener('timeupdate',()=>{const v=$('#playerVideo');if(v.duration){const pct=(v.currentTime/v.duration)*100;$('#playerRange').value=pct;$('#playerRange').style.setProperty('--player-progress',pct+'%');$('#playerTime').textContent=`${formatTime(v.currentTime)} / ${formatTime(v.duration)}`}});$('#playerVideo').addEventListener('error',()=>{$('#player').classList.add('error');$('#playerErrorText').textContent='This browser fixture cannot play the selected local source. The production native player will handle the original file.'});$('#playerCenterPlay').onclick=()=>$('#playerPlayPause').click();
+$('#player').addEventListener('mousemove',()=>showPlayerUi(false));
+$('#player').addEventListener('touchstart',()=>showPlayerUi(false),{passive:true});
+$('#playerVideo').onclick=()=>$('#playerPlayPause').click();
+$('#playerRewind').onclick=()=>{const v=$('#playerVideo');v.currentTime=Math.max(0,(v.currentTime||0)-10);playerFeedback('↶ 10')};
+$('#playerForward').onclick=()=>{const v=$('#playerVideo');v.currentTime=Math.min(v.duration||Infinity,(v.currentTime||0)+10);playerFeedback('10 ↷')};$('#playerPlayPause').onclick=()=>{const v=$('#playerVideo');if(v.paused){v.play().then(()=>playerSetPlaying(true)).catch(()=>{})}else{v.pause();playerSetPlaying(false)}};function updatePlayerMuteIcon(){
+  const muted=$('#playerVideo').muted;
+  $('#playerMute').innerHTML=muted
+    ?'<svg class="player-volume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10Z"></path><path d="m16 9 5 6M21 9l-5 6"></path></svg>'
+    :'<svg class="player-volume-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10Z"></path><path d="M16 9c1.4 1.7 1.4 4.3 0 6"></path><path d="M18.5 6.5c3 3 3 8 0 11"></path></svg>';
+  $('#playerMute').setAttribute('aria-label',muted?'Unmute':'Mute');
+}
+function openDetails(title,img,poster,card){selectedMedia={title,img,poster,preview:previewByTitle[title]};$('#detailsTitle').textContent=title;$('#detailsMeta').textContent=card?.querySelector('small')?.textContent||'';$('#detailsDescription').textContent=descriptions[title]||`A local HED Space selection from ${card?.querySelector('.card-tag')?.textContent||'your library'}.`;$('#detailsPoster').src=poster||img;$('#details').classList.add('open');const stage=$('#detailsBackdrop');stage.querySelector('video')?.remove();if(selectedMedia.preview){const video=document.createElement('video');video.src=previewRoot+selectedMedia.preview;video.autoplay=true;video.muted=true;video.loop=true;video.playsInline=true;stage.prepend(video);video.play().catch(()=>{})}}function closeDetails(){$('#details').classList.remove('open');$('#detailsBackdrop').querySelector('video')?.remove();selectedMedia=null}function renderEpisodes(season){$('#episodeList').innerHTML=season.items.map((item,i)=>`<button data-episode="${i}"><img src="${item.img}" alt=""><span><strong>${item.title}</strong><small>${item.meta}</small></span><em>Play</em></button>`).join('');$('#episodeList').querySelectorAll('button').forEach((button,i)=>button.onclick=()=>{const item=season.items[i];closeSeries();openDetails(item.title,item.img,posterRoot+posterMap[item.title]||item.img,{querySelector:s=>s==='small'?{textContent:item.meta}:null})})}function openSeries(title,card){const data=seriesData[title];$('#seriesPoster').src=posterRoot+data.poster;$('#seriesTitle').textContent=title;$('#seriesMeta').textContent=data.meta;$('#seriesIntro').textContent=data.intro;$('#seriesPanel').style.setProperty('--series-backdrop',`url("${posterRoot+data.poster}")`);$('#seriesPanel').classList.add('open');$('#seasonList').innerHTML=data.seasons.map((s,i)=>`<button data-season="${i}" class="${i===0?'active':''}">${s.name} · ${s.count}</button>`).join('');const select=i=>{document.querySelectorAll('#seasonList button').forEach((b,n)=>b.classList.toggle('active',n===i));renderEpisodes(data.seasons[i])};document.querySelectorAll('#seasonList button').forEach((b,i)=>b.onclick=()=>select(i));select(0)}function closeSeries(){$('#seriesPanel').classList.remove('open')}$('#seriesClose').onclick=closeSeries;$('#details').onclick=e=>{if(e.target===$('#details'))closeDetails()};$('#detailsPlay').onclick=()=>{if(!selectedMedia)return;const media=selectedMedia;closeDetails();openPlayer(media.title,media.img)};$('#closeDetails').onclick=closeDetails;$('#detailsDismiss').onclick=closeDetails;$('#heroPlay').onclick=()=>{if(currentSection==='home'){openPlayer('Dune: Part Two',epics[1].img);return}openPlayer(heroTitle.textContent,heroBg.style.backgroundImage.slice(5,-2))};$('#closePlayer').onclick=()=>$('#player').classList.remove('open');$('#heroInfo').onclick=()=>{if(currentSection==='home'){document.querySelector('#homeDashboard')?.scrollIntoView({behavior:motionLevel==='off'?'auto':'smooth',block:'start'});return}$('#infoTitle').textContent='Your collection. Your space.';$('#infoText').textContent='HED Space is a private, local-first desktop media experience that turns the collection you already own into a polished cinematic library. Movies, series, anime, childhood favourites, music, and immersive atmospheres live together in one interface with local scanning, season and episode organisation, custom artwork, resume progress, and high-quality playback.';$('#infoPanel').classList.add('open')};
+document.querySelectorAll('.panel .panel-close').forEach(btn=>btn.onclick=()=>btn.closest('.panel').classList.remove('open'));$('#browseRooms').onclick=()=>$('#roomPanel').classList.add('open');$('#chooseSound').onclick=()=>$('#soundPanel').classList.add('open');
+function fullscreenActive(){return Boolean(document.fullscreenElement||document.body.classList.contains('fullscreen-fallback'))}function updateFullscreenLabel(){const active=fullscreenActive();$('#fullscreenLabel').textContent=active?'Exit fullscreen':'Fullscreen';$('#fullscreenAtmos').setAttribute('aria-pressed',String(active));requestAnimationFrame(centerRails)}
+async function toggleAtmosFullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.body.classList.contains('fullscreen-fallback'))document.body.classList.remove('fullscreen-fallback');else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen({navigationUI:'hide'});else document.body.classList.add('fullscreen-fallback')}catch{document.body.classList.toggle('fullscreen-fallback')}updateFullscreenLabel()}
+$('#fullscreenAtmos').onclick=toggleAtmosFullscreen;document.addEventListener('fullscreenchange',updateFullscreenLabel);window.addEventListener('resize',()=>requestAnimationFrame(centerRails));
+$('#roomOptions').innerHTML=roomData.map(r=>`<button class="room-option${r.id===currentRoom?' selected':''}" data-room="${r.id}"><img src="${r.thumb}" alt=""><span><strong>${r.title}</strong><small>${r.meta}</small></span><span>${r.id===currentRoom?'Inside':'Enter'}</span></button>`).join('');
+function selectRoom(id){const r=roomData.find(x=>x.id===id);currentRoom=id;atmosVideo.poster=r.poster;atmosVideo.src=r.src;atmosVideo.load();atmosVideo.muted=currentSound!=='Original atmosphere';atmosVideo.play().catch(()=>{});$('#roomTitle').textContent=r.title;document.querySelectorAll('.room-option').forEach(o=>{const active=o.dataset.room===id;o.classList.toggle('selected',active);o.lastElementChild.textContent=active?'Inside':'Enter'});$('#roomPanel').classList.remove('open');flash('Entered · '+r.title)}document.querySelectorAll('.room-option').forEach(o=>o.onclick=()=>selectRoom(o.dataset.room));
+document.querySelectorAll('.sound-option').forEach(o=>o.onclick=()=>{currentSound=o.dataset.sound;document.querySelectorAll('.sound-option').forEach(x=>{x.classList.toggle('selected',x===o);x.lastElementChild.textContent=x===o?'Active':'Play'});if(o.dataset.src){atmosVideo.muted=true;soundtrackAudio.src=o.dataset.src;soundtrackAudio.play().catch(()=>flash('Press once more to start audio'))}else{soundtrackAudio.pause();soundtrackAudio.removeAttribute('src');atmosVideo.muted=false;atmosVideo.volume=.72;atmosVideo.play().catch(()=>{})}$('#soundStatus').textContent=currentSound;$('#soundPanel').classList.remove('open');flash(currentSound==='Original atmosphere'?'Original ambience restored':'Soundtrack · '+currentSound)});
+const searchItems=()=>[...libraryCatalog.movies.map(x=>({...x,kind:'Movies'})),...libraryCatalog.series.map(x=>({...x,kind:'Series & anime'})),...libraryCatalog.childhood.map(x=>({...x,kind:'Childhood'})),...libraryCatalog.music.map(x=>({...x,kind:'Songs'})),...aot.slice(0,8).map(x=>({...x,kind:'Attack on Titan episodes'})),...hxh.slice(0,8).map(x=>({...x,kind:'Hunter × Hunter episodes'})),...roomData.map(x=>({title:x.title,img:x.poster,meta:x.meta,tag:'Atmospheres',kind:'Atmospheres'}))];function renderSearch(query=''){const q=query.trim().toLowerCase();const results=searchItems().filter(x=>!q||`${x.title} ${x.meta||''} ${x.tag||''} ${x.kind}`.toLowerCase().includes(q)).slice(0,60);const groups=[...new Set(results.map(x=>x.kind))];$('#searchResults').innerHTML=results.length?groups.map(kind=>{const items=results.filter(x=>x.kind===kind);return `<section class="search-group"><h2>${kind}<span>${items.length} results</span></h2><div class="search-result-grid">${items.map((x,i)=>`<button class="search-result" data-search-kind="${x.kind}" data-search-title="${x.title.replaceAll('"','&quot;')}"><img src="${posterFor(x)||x.img}" alt=""><strong>${x.title}</strong><small>${x.meta||x.tag||''}</small></button>`).join('')}</div></section>`}).join(''):'<div class="search-empty">No matching titles in your local space.</div>';document.querySelectorAll('.search-result').forEach(button=>button.onclick=()=>{const item=results.find(x=>x.title===button.dataset.searchTitle&&x.kind===button.dataset.searchKind);if(!item)return;closeSearch();if(seriesData[item.title])openSeries(item.title,button);else if(item.kind==='Atmospheres')flash('Atmosphere · '+item.title);else openDetails(item.title,item.img,posterFor(item)||item.img,{querySelector:s=>s==='small'?{textContent:item.meta||item.tag}:s==='.card-tag'?{textContent:item.kind}:null})})}function openSearch(){renderSearch($('#searchInput').value);$('#searchOverlay').classList.add('open');setTimeout(()=>$('#searchInput').focus(),40)}function closeSearch(){$('#searchOverlay').classList.remove('open');$('#searchInput').value='';}$('#search').onclick=openSearch;$('#searchClose').onclick=closeSearch;$('#searchInput').oninput=e=>renderSearch(e.target.value);$('#searchInput').onkeydown=e=>{if(e.key==='Escape')closeSearch()};document.querySelectorAll('[data-search-chip]').forEach(chip=>chip.onclick=()=>{$('#searchInput').value=chip.dataset.searchChip;renderSearch(chip.dataset.searchChip);$('#searchInput').focus()});$('#searchOverlay').onclick=e=>{if(e.target===$('#searchOverlay'))closeSearch()};$('#motionToggle').onclick=()=>{motionLevel=motionLevel==='full'?'reduced':motionLevel==='reduced'?'off':'full';document.body.classList.toggle('reduce',motionLevel==='reduced');document.body.classList.toggle('motion-off',motionLevel==='off');flash('Motion · '+motionLevel)};
+function showIntro(){const intro=$('#intro');document.body.classList.add('intro-open');intro.classList.remove('hidden','leaving','active');void intro.offsetWidth;intro.classList.add('active');clearTimeout(window.introTimer);if(motionLevel==='full'&&!matchMedia('(prefers-reduced-motion: reduce)').matches)window.introTimer=setTimeout(()=>dismissIntro(false),5600)}function dismissIntro(remember=true){const intro=$('#intro');clearTimeout(window.introTimer);if(remember)sessionStorage.setItem('hed-intro-seen','1');intro.classList.add('leaving');setTimeout(()=>{intro.classList.add('hidden');intro.classList.remove('active','leaving');document.body.classList.remove('intro-open')},820)}$('#skipIntro').onclick=()=>dismissIntro(true);$('#enterIntro').onclick=()=>dismissIntro(true);$('#replayIntro').onclick=showIntro;document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.querySelectorAll('.panel.open').forEach(p=>p.classList.remove('open'));closeSeries();closeDetails();$('#player').classList.remove('open')}if((e.key==='Enter'||e.key==='Escape')&&!$('#intro').classList.contains('hidden'))dismissIntro(true)});
+
+$('#listenPlayPause').onclick=()=>{
+  const tracks=allListenTracks();
+  const card=tracks[listenCurrentIndex]||tracks[0];
+  if(!card)return;
+  const src=listenPreviewByTitle[card.title];
+  if(!src){flash('Preview is not linked for this track yet');return}
+  if(listenIsPlaying){
+    listenAudio.pause();listenIsPlaying=false;setListenPlayButtonState(false);
+  }else{
+    if(!listenAudio.src.endsWith(src)){listenAudio.src=src;listenAudio.load()}
+    listenAudio.play().then(()=>{listenIsPlaying=true;setListenPlayButtonState(true)}).catch(()=>flash('Press play again to start audio'));
+  }
+};
+$('#listenPrev').onclick=()=>{
+  const tracks=allListenTracks();if(!tracks.length)return;
+  listenCurrentIndex=(listenCurrentIndex-1+tracks.length)%tracks.length;
+  setListenNow(tracks[listenCurrentIndex].title,true);
+};
+$('#listenNext').onclick=()=>{
+  const tracks=allListenTracks();if(!tracks.length)return;
+  listenCurrentIndex=(listenCurrentIndex+1)%tracks.length;
+  setListenNow(tracks[listenCurrentIndex].title,true);
+};
+listenAudio.addEventListener('ended',()=>{if(!(window.__TAURI__||window.__TAURI_INTERNALS__))$('#listenNext').click()});
+
+function buildSeriesData(){seriesData['Attack on Titan'].seasons[0].items=aot;seriesData['Attack on Titan'].seasons.slice(1).forEach(s=>s.items=aot.slice(0,4));seriesData['Hunter × Hunter'].seasons[0].items=hxh;seriesData['Hunter × Hunter'].seasons.slice(1).forEach(s=>s.items=hxh.slice(0,4));seriesData['One Piece · Season 2'].seasons[0].items=[c('The City of the Beginning and the End','posters/one-piece-s2.jpg','Episode 1','One Piece'),c('Rebel Whale','posters/one-piece-s2.jpg','Episode 2','One Piece'),c('Shady Deals at Whisky Peak','posters/one-piece-s2.jpg','Episode 3','One Piece'),c('Big Trouble in Little Garden','posters/one-piece-s2.jpg','Episode 4','One Piece')];}
+function buildLibraryCatalog(){libraryCatalog.movies=[...action,...heroesRow,...epics,c('Aladdin','posters/aladdin-2019.jpg','2019','Fantasy'),c('How to Train Your Dragon','posters/how-to-train-your-dragon.jpg','Adventure','Fantasy'),c('Sonic the Hedgehog 3','posters/sonic-the-hedgehog-3.jpg','2024','Adventure'),c('Twilight: Breaking Dawn — Part 2','posters/twilight-bd-part-2.jpg','2012','Fantasy')];libraryCatalog.series=[...posterRows.anime];libraryCatalog.childhood=[...posterRows.childhood];libraryCatalog.music=[...music,...soundtrack];}
+const hedIsDesktop=Boolean(window.__TAURI__||window.__TAURI_INTERNALS__);if(!hedIsDesktop){buildSeriesData();buildLibraryCatalog();renderStandard('watch');const params=new URLSearchParams(location.search);if(params.get('welcome')==='1'||(!params.has('skipIntro')&&!sessionStorage.getItem('hed-intro-seen')))showIntro();}
+</script>
+<script src="desktop.js"></script>
+</body>
+</html>
+<style>
+/* v0.6.30 — exact uploaded Listen play icon + keep distinct Library icon */
+.listen-quick-play,
+.listen-album-play{
+  display:grid !important;
+  place-items:center !important;
+  width:52px !important;
+  height:52px !important;
+  padding:0 !important;
+  border:0 !important;
+  border-radius:14px !important;
+  background:transparent !important;
+  box-shadow:none !important;
+  overflow:visible !important;
+}
+.listen-quick-play::before,
+.listen-album-play::before{
+  content:"";
+  display:block;
+  width:44px;
+  height:44px;
+  background:url("Images/green_play_button_icon.png") center/contain no-repeat;
+}
+.listen-quick-play .play-icon-listen,
+.listen-album-play .play-icon-listen{
+  display:none !important;
+}
+.listen-album-play{
+  font-size:0 !important;
+  line-height:0 !important;
+  color:transparent !important;
+}
+
+/* Library: white disc with a crisp black outline and outlined play glyph */
+.poster-tile .poster-play,
+.library-music-play{
+  background:#f3f3ef !important;
+  color:#0a0a0b !important;
+  border:2px solid #0a0a0b !important;
+  box-shadow:0 9px 24px rgba(0,0,0,.36) !important;
+}
+.poster-tile .poster-play{
+  width:34px !important;
+  height:34px !important;
+}
+.library-music-play{
+  width:42px !important;
+  height:42px !important;
+}
+.poster-tile .poster-play .play-icon-library,
+.library-music-play .play-icon-library{
+  width:17px !important;
+  height:17px !important;
+  fill:none !important;
+  color:#0a0a0b !important;
+  transform:translateX(.8px) !important;
+}
+</style>

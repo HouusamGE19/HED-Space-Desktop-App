@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HED Space Player</title>
+  <link rel="stylesheet" href="player-overlay.css">
+</head>
+<body>
+  <main class="player-shell is-loading" id="playerShell">
+    <div class="shade shade-top"></div>
+    <div class="shade shade-bottom"></div>
+
+    <header class="player-top controls">
+      <button class="icon-button back" id="playerBack" aria-label="Back to HED Space" title="Back to HED Space">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15.5 5.5 9 12l6.5 6.5"/></svg>
+      </button>
+      <div class="title-block">
+        <small class="brandline">HED SPACE</small>
+        <div class="title-line">
+          <strong id="playerTitle">Playing</strong>
+          <span id="playerContext"></span>
+        </div>
+      </div>
+    </header>
+
+    <section class="buffering" id="buffering" aria-live="polite">
+      <span class="spinner"></span>
+    </section>
+
+    <section class="center-controls controls" aria-label="Playback controls">
+      <button class="round-action seek" id="rewind" aria-label="Rewind 10 seconds" title="Back 10 seconds">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M20 12h-9V3"/><path d="M11.8 12.3A17 17 0 1 1 7 29"/><text x="17" y="31">10</text></svg>
+      </button>
+      <button class="round-action main" id="centerPlay" aria-label="Play or pause">
+        <svg class="play-icon" viewBox="0 0 24 24"><path d="M8.1 5.8 19 12 8.1 18.2Z"/></svg>
+        <svg class="pause-icon" viewBox="0 0 24 24"><rect x="7.2" y="5.4" width="3.5" height="13.2" rx=".8"/><rect x="13.4" y="5.4" width="3.5" height="13.2" rx=".8"/></svg>
+      </button>
+      <button class="round-action seek" id="forward" aria-label="Forward 10 seconds" title="Forward 10 seconds">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M28 12h9V3"/><path d="M36.2 12.3A17 17 0 1 0 41 29"/><text x="17" y="31">10</text></svg>
+      </button>
+    </section>
+
+    <div class="seek-feedback" id="seekFeedback" aria-hidden="true"><span id="seekFeedbackText">+10</span></div>
+
+    <aside class="next-episode controls" id="nextEpisode" hidden>
+      <small class="next-label">UP NEXT</small>
+      <strong id="nextTitle">Next episode</strong>
+      <span id="nextMeta"></span>
+      <div class="next-actions">
+        <button class="next-primary" id="playNextNow">Play now</button>
+        <button class="next-secondary" id="dismissNext">Not yet</button>
+      </div>
+      <small class="next-countdown" id="nextCountdown">Playing soon</small>
+    </aside>
+
+    <footer class="player-bottom controls">
+      <div class="timeline-area">
+        <div class="timeline-preview" id="timelinePreview" hidden><span id="previewTime">0:00</span></div>
+        <input id="timeline" class="timeline" type="range" min="0" max="100" step="0.05" value="0" aria-label="Playback position">
+      </div>
+
+      <div class="timeline-labels">
+        <span id="currentTime">0:00</span>
+        <span class="total-time" id="totalTime">0:00</span>
+      </div>
+
+      <div class="bottom-row">
+        <div class="left-controls">
+          <button class="icon-button" id="bottomPlay" aria-label="Play or pause" title="Play / Pause">
+            <svg class="play-icon" viewBox="0 0 24 24"><path d="M8.1 5.8 19 12 8.1 18.2Z"/></svg>
+            <svg class="pause-icon" viewBox="0 0 24 24"><rect x="7.2" y="5.4" width="3.5" height="13.2" rx=".8"/><rect x="13.4" y="5.4" width="3.5" height="13.2" rx=".8"/></svg>
+          </button>
+          <button class="icon-button episode-control" id="previous" aria-label="Previous episode" title="Previous episode">
+            <svg viewBox="0 0 24 24"><path d="M6 6v12M18 6 9 12l9 6Z"/></svg>
+          </button>
+          <button class="icon-button episode-control" id="next" aria-label="Next episode" title="Next episode">
+            <svg viewBox="0 0 24 24"><path d="M18 6v12M6 6l9 6-9 6Z"/></svg>
+          </button>
+
+          <div class="volume-wrap">
+            <button class="icon-button" id="volumeButton" aria-label="Volume" title="Volume">
+              <svg viewBox="0 0 24 24"><path d="M5 10v4h4l5 4V6l-5 4H5Z"/><path class="volume-wave" d="M17 9c1 1 1 5 0 6M19.5 6.8c2.5 2.8 2.5 7.6 0 10.4"/></svg>
+            </button>
+            <input id="volume" class="volume" type="range" min="0" max="130" step="1" value="100" aria-label="Volume level">
+          </div>
+
+          <div class="now-playing">
+            <strong id="bottomTitle">Playing</strong>
+            <span id="bottomContext"></span>
+          </div>
+        </div>
+
+        <div class="right-controls">
+          <button class="icon-button tracks-button" id="tracksButton" aria-label="Audio and subtitles" title="Audio & subtitles">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2"/><path d="M7 14.5h4M7 11h7M16.5 14.5h.01"/></svg>
+          </button>
+          <div class="track-panel" id="trackPanel" hidden>
+            <div class="track-panel-head">
+              <strong>Audio & Subtitles</strong>
+              <button id="closeTracks" aria-label="Close">×</button>
+            </div>
+            <div class="track-columns">
+              <section>
+                <h3>Audio</h3>
+                <div class="track-list" id="audioMenu"></div>
+              </section>
+              <section>
+                <h3>Subtitles</h3>
+                <div class="track-list" id="subtitleMenu"></div>
+              </section>
+            </div>
+          </div>
+          <button class="icon-button" id="exitPlayer" aria-label="Exit player" title="Exit player">
+            <svg viewBox="0 0 24 24"><path d="M7 7l10 10M17 7 7 17"/></svg>
+          </button>
+        </div>
+      </div>
+    </footer>
+
+    <div class="player-error" id="playerError" hidden>
+      <strong>Playback connection lost</strong>
+      <small id="playerErrorText">The mpv engine is not responding.</small>
+      <button id="errorBack">Back to HED Space</button>
+    </div>
+  </main>
+  <script src="player-overlay.js"></script>
+</body>
+</html>

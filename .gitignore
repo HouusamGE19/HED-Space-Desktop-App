@@ -1,0 +1,43 @@
+node_modules/
+src-tauri/target/
+src-tauri/gen/
+.DS_Store
+*.log
+
+# Local databases / application state
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# Environment / editor files
+.env
+.env.*
+!.env.example
+.vscode/
+.idea/
+
+# Third-party playback/probing binaries are not committed
+src-tauri/bin/*
+!src-tauri/bin/README.txt
+
+# Personal media files should never be committed
+*.mkv
+*.mp4
+*.m4v
+*.avi
+*.mov
+*.wmv
+*.webm
+*.mp3
+*.m4a
+*.flac
+*.wav
+*.aac
+*.ogg
+*.opus
+*.srt
+*.ass
+*.ssa
+*.vtt

@@ -1,0 +1,28 @@
+{
+  "home": [
+    "home-01.jpg",
+    "home-02.jpg",
+    "home-03.jpg",
+    "home-04.jpg"
+  ],
+  "watch": [
+    "home-01.jpg",
+    "home-02.jpg",
+    "home-03.jpg",
+    "home-04.jpg"
+  ],
+  "library": [
+    "home-01.jpg",
+    "home-02.jpg",
+    "home-03.jpg",
+    "home-04.jpg"
+  ],
+  "listen": [
+    "listen-01.jpg",
+    "listen-02.jpg"
+  ],
+  "atmospheres": [
+    "atmosphere-01.jpg",
+    "atmosphere-02.jpg"
+  ]
+}
